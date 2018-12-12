@@ -26,5 +26,6 @@ public class TReserva {
     private String estado;
     private TUsuario usuario;
     private TVehiculo vehiculo;
+    private TPlaya playa;
 
 }

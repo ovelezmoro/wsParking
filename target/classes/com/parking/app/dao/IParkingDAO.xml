@@ -7,31 +7,33 @@
     <resultMap id="ReservaMap" type="TReserva">
         <id property="idUsuario" column="id_usuario"></id>
         <id property="idVehiculo" column="id_vehiculo"></id>
+        <id property="idPlaya" column="id_playa"></id>
         <association property="usuario" column="id_usuario" 
                      javaType="TUsuario" select="com.parking.app.dao.IParkingDAO.getUsuario">
         </association>
         <association property="vehiculo" column="id_vehiculo" 
                      javaType="TVehiculo" select="com.parking.app.dao.IParkingDAO.getVehiculo">
         </association>
+        <association property="playa" column="id_playa" 
+                     javaType="TPlaya" select="com.parking.app.dao.IParkingDAO.getOnePlaya">
+        </association>
     </resultMap>
-    
-<!--    <resultMap id="UsuarioMap" type="TUsuario">
-        <collection property="vehiculos"
-                    column="id"
-                    foreignColumn="id_usuario"
-                    javaType="ArrayList"
-                    ofType="TVehiculo"
-                    select="com.parking.app.dao.IParkingDAO.getVehiculosByUser">
-        </collection>
-    </resultMap>-->
-    
+        
     
     <select id="getUsuario" resultType="TUsuario">
         SELECT * FROM t_usuario where id = #{usuario}
     </select>
     
+    <select id="getReserva" resultType="TReserva">
+        SELECT * FROM t_reserva where id = #{reserva}
+    </select>
+    
     <select id="getVehiculo" resultType="TVehiculo">
         SELECT * FROM t_vehiculo where id = #{vehiculo}
+    </select>
+    
+    <select id="getOnePlaya" resultType="TPlaya">
+        SELECT * FROM t_playa where id = #{playa}
     </select>
     
     <select id="getVehiculosByUser" resultType="TVehiculo">
@@ -56,6 +58,8 @@
     <select id="getAllPlayas" resultType="java.util.LinkedHashMap">
         SELECT * FROM t_playa
     </select>
+    
+    
     
     <select id="getPlaya" resultType="java.util.LinkedHashMap">
         SELECT t2.*, t1.tarifa_estacionamiento, t1.tarifa_reserva, t1.nueva_tarifa FROM t_tarifa t1, t_playa t2 WHERE t1.id_playa = t2.id AND t2.id = #{id_playa}
@@ -88,6 +92,10 @@
     
     <update id="updateTarifa">
         UPDATE t_tarifa SET nueva_tarifa=#{tarifa}, fregistro = NOW() WHERE id=#{idPlaya}
+    </update>
+    
+    <update id="updateReserva">
+        UPDATE t_reserva SET fecha_reserva=#{reserva.fechaReserva}, id_vehiculo = #{reserva.idVehiculo} WHERE id=#{reserva.id}
     </update>
     
     <update id="cancelarReserva">

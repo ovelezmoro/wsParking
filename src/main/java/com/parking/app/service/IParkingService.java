@@ -23,6 +23,8 @@ public interface IParkingService {
     List<Map<String, Object>> getAllPlayas();
 
     TReserva saveReserva(TReservaDTO reserva);
+    
+    TReserva updateReserva(Integer idreserva, TReservaDTO reserva);
 
     List<Map<String, Object>> getProbabilidad(Integer hora, String dia, Integer idPlaya);
 

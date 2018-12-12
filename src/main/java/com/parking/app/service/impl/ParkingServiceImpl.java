@@ -60,6 +60,25 @@ public class ParkingServiceImpl implements IParkingService {
     }
 
     @Override
+    public TReserva updateReserva(Integer idreserva, TReservaDTO reserva) {
+
+        TReserva tReserva = iParkingDAO.getReserva(idreserva);
+        tReserva.setFechaReserva(reserva.getFechaReserva());
+        tReserva.setIdVehiculo(reserva.getIdVehiculo());
+
+//        TReserva tReserva = new TReserva();
+//        tReserva.setId(idreserva);
+//        tReserva.setFechaReserva(reserva.getFechaReserva());
+//        tReserva.setIdVehiculo(reserva.getIdVehiculo());
+        iParkingDAO.updateReserva(tReserva);
+        Thread thread = new Thread(() -> {
+            iEmailService.sendMail(new String[]{"ovelezmoro@gmail.com"}, "ACTUALIZACION DE RESERVA: " + tReserva.getShaReserva(), "RESERVA REGISTRADA PARA EL " + StrUtil.getDate(tReserva.getFechaReserva(), "dd/MM/yyyy") + " A LAS " + StrUtil.getDate(tReserva.getFechaReserva(), "hh:mm"));
+        });
+        thread.start();
+        return tReserva;
+    }
+
+    @Override
     public List<Map<String, Object>> getAllPlayas() {
         return iParkingDAO.getAllPlayas();
     }
