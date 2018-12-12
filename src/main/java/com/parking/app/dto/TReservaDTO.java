@@ -22,5 +22,6 @@ public class TReservaDTO {
     private BigDecimal precioReserva;
     private Integer idPlaya;
     private Integer idUsuario;
+    private Integer idVehiculo;
 
 }

@@ -5,10 +5,13 @@
  */
 package com.parking.app.entity;
 
+import lombok.Data;
+
 /**
  *
  * @author Osmar Velezmoro <SIS-SINTAD>
  */
+@Data
 public class TData {
 
     Integer local;

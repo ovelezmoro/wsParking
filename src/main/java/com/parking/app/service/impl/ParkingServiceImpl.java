@@ -8,13 +8,13 @@ package com.parking.app.service.impl;
 import com.parking.app.dao.IParkingDAO;
 import com.parking.app.dto.TReservaDTO;
 import com.parking.app.entity.TReserva;
+import com.parking.app.entity.TUsuario;
+import com.parking.app.entity.TVehiculo;
 import com.parking.app.service.IEmailService;
 import com.parking.app.service.IParkingService;
 import com.parking.app.util.StrUtil;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -46,6 +46,7 @@ public class ParkingServiceImpl implements IParkingService {
         tReserva.setFechaReserva(reserva.getFechaReserva());
         tReserva.setIdPlaya(reserva.getIdPlaya());
         tReserva.setIdUsuario(reserva.getIdUsuario());
+        tReserva.setIdVehiculo(reserva.getIdVehiculo());
         tReserva.setPrecioReserva(reserva.getPrecioReserva());
         tReserva.setShaReserva("RES-COD-" + incremental);
         iParkingDAO.saveReserva(tReserva);
@@ -86,6 +87,24 @@ public class ParkingServiceImpl implements IParkingService {
         return iParkingDAO.getPlaya(id_playa);
     }
 
-    
-    
+    @Override
+    public List<TReserva> getReservas(Integer id_usuario) {
+        return iParkingDAO.getReservasByUser(id_usuario);
+    }
+
+    @Override
+    public void cancelarReserva(Integer id_reserva) {
+        iParkingDAO.cancelarReserva(id_reserva);
+    }
+
+    @Override
+    public TUsuario getUsuario(Integer id_usuario) {
+        return iParkingDAO.getUsuario(id_usuario);
+    }
+
+    @Override
+    public List<TVehiculo> getVehiculosByUser(Integer id_usuario) {
+        return iParkingDAO.getVehiculosByUser(id_usuario);
+    }
+
 }

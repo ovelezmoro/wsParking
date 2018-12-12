@@ -13,9 +13,8 @@ import lombok.Data;
  * @author Osmar Velezmoro <SIS-SINTAD>
  */
 @Data
-public class TVehiculo implements Serializable {
+public class TVehiculo {
 
-    private static final long serialVersionUID = 1L;
     private Integer id;
     private String placa;
 

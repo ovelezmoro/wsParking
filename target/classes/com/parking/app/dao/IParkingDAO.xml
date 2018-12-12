@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.parking.app.dao.IParkingDAO">
+    
+    <resultMap id="ReservaMap" type="TReserva">
+        <id property="idUsuario" column="id_usuario"></id>
+        <id property="idVehiculo" column="id_vehiculo"></id>
+        <association property="usuario" column="id_usuario" 
+                     javaType="TUsuario" select="com.parking.app.dao.IParkingDAO.getUsuario">
+        </association>
+        <association property="vehiculo" column="id_vehiculo" 
+                     javaType="TVehiculo" select="com.parking.app.dao.IParkingDAO.getVehiculo">
+        </association>
+    </resultMap>
+    
+<!--    <resultMap id="UsuarioMap" type="TUsuario">
+        <collection property="vehiculos"
+                    column="id"
+                    foreignColumn="id_usuario"
+                    javaType="ArrayList"
+                    ofType="TVehiculo"
+                    select="com.parking.app.dao.IParkingDAO.getVehiculosByUser">
+        </collection>
+    </resultMap>-->
+    
+    
+    <select id="getUsuario" resultType="TUsuario">
+        SELECT * FROM t_usuario where id = #{usuario}
+    </select>
+    
+    <select id="getVehiculo" resultType="TVehiculo">
+        SELECT * FROM t_vehiculo where id = #{vehiculo}
+    </select>
+    
+    <select id="getVehiculosByUser" resultType="TVehiculo">
+        SELECT * FROM t_vehiculo where id_usuario = #{usuario}
+    </select>
+    
+    <select id="getReservasByUser" resultMap="ReservaMap">
+        SELECT * FROM t_reserva t1 WHERE t1.id_usuario = #{id_usuario} ORDER BY id DESC LIMIT 10 
+    </select>
+    
+    <select id="getDistancia" resultType="java.util.LinkedHashMap">
+        SELECT 
+        t1.*, t2.tarifa_reserva, t2.nueva_tarifa, t2.tarifa_estacionamiento, 
+        (SELECT count(*) from t_reserva where t_reserva.id_playa = t1.id and fecha_reserva = NOW()) as reservados, 
+        (6371 * ACOS(SIN(RADIANS(t1.latitud)) * SIN(RADIANS(#{latitud})) + COS(RADIANS(t1.longitud - #{longitud})) * COS(RADIANS(t1.latitud)) * COS(RADIANS(#{latitud})))) as distance 
+        FROM t_playa t1, t_tarifa t2 
+        WHERE t1.id=t2.id_playa 
+        AND (6371 * ACOS(SIN(RADIANS(t1.latitud)) * SIN(RADIANS(#{latitud})) + COS(RADIANS(t1.longitud - #{longitud})) * COS(RADIANS(latitud)) * COS(RADIANS(#{latitud})))) &lt; #{distancia}
+        ORDER BY distance ASC
+    </select>
+    
+    <select id="getAllPlayas" resultType="java.util.LinkedHashMap">
+        SELECT * FROM t_playa
+    </select>
+    
+    <select id="getPlaya" resultType="java.util.LinkedHashMap">
+        SELECT t2.*, t1.tarifa_estacionamiento, t1.tarifa_reserva, t1.nueva_tarifa FROM t_tarifa t1, t_playa t2 WHERE t1.id_playa = t2.id AND t2.id = #{id_playa}
+    </select>
+    
+    <select id="getUltimaReserva" resultType="com.parking.app.entity.TReserva">
+        SELECT * FROM t_reserva ORDER BY id DESC LIMIT 1
+    </select>
+    
+    <select id="getTarifas" resultType="java.util.LinkedHashMap">
+        SELECT t1.*, t2.nombre FROM t_tarifa t1, t_playa t2 WHERE t1.id_playa = t2.id
+    </select>
+    
+    <select id="getProbabilidad" resultType="java.util.LinkedHashMap">
+        SELECT 
+        id_playa,ingresos, dia,
+        round((INGRESOS/(SELECT SUM(INGRESOS) FROM t_sugerencia_playa WHERE dia BETWEEN '2018-10-01' AND '2018-10-31' AND hora=#{hora} GROUP BY id_playa ORDER BY id_playa ASC LIMIT 1)),2) AS ocupabilidad, 
+        (1 - round((INGRESOS/(SELECT SUM(INGRESOS) FROM t_sugerencia_playa WHERE dia BETWEEN '2018-10-01' AND '2018-10-31' AND hora=#{hora} GROUP BY id_playa ORDER BY id_playa ASC LIMIT 1)),2))*100 AS probabilidad
+        FROM t_sugerencia_playa 
+        WHERE hora=#{hora}
+        and id_playa=#{idPlaya} 
+        and dia=#{dia}
+        GROUP BY id_playa
+    </select>
+    
+    <insert id="saveReserva">
+        INSERT INTO `t_reserva` (`id_usuario`, `id_playa`, `fecha_reserva`, `precio_reserva`, `sha_reserva`, `id_vehiculo`) 
+        VALUES (#{reserva.idUsuario}, #{reserva.idPlaya}, #{reserva.fechaReserva}, #{reserva.precioReserva}, #{reserva.shaReserva}, #{reserva.idVehiculo})
+    </insert>
+    
+    <update id="updateTarifa">
+        UPDATE t_tarifa SET nueva_tarifa=#{tarifa}, fregistro = NOW() WHERE id=#{idPlaya}
+    </update>
+    
+    <update id="cancelarReserva">
+        UPDATE t_reserva SET estado='C' WHERE id=#{idReserva}
+    </update>
+    
+    
+</mapper>

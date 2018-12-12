@@ -4,6 +4,44 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.parking.app.dao.IParkingDAO">
     
+    <resultMap id="ReservaMap" type="TReserva">
+        <id property="idUsuario" column="id_usuario"></id>
+        <id property="idVehiculo" column="id_vehiculo"></id>
+        <association property="usuario" column="id_usuario" 
+                     javaType="TUsuario" select="com.parking.app.dao.IParkingDAO.getUsuario">
+        </association>
+        <association property="vehiculo" column="id_vehiculo" 
+                     javaType="TVehiculo" select="com.parking.app.dao.IParkingDAO.getVehiculo">
+        </association>
+    </resultMap>
+    
+<!--    <resultMap id="UsuarioMap" type="TUsuario">
+        <collection property="vehiculos"
+                    column="id"
+                    foreignColumn="id_usuario"
+                    javaType="ArrayList"
+                    ofType="TVehiculo"
+                    select="com.parking.app.dao.IParkingDAO.getVehiculosByUser">
+        </collection>
+    </resultMap>-->
+    
+    
+    <select id="getUsuario" resultType="TUsuario">
+        SELECT * FROM t_usuario where id = #{usuario}
+    </select>
+    
+    <select id="getVehiculo" resultType="TVehiculo">
+        SELECT * FROM t_vehiculo where id = #{vehiculo}
+    </select>
+    
+    <select id="getVehiculosByUser" resultType="TVehiculo">
+        SELECT * FROM t_vehiculo where id_usuario = #{usuario}
+    </select>
+    
+    <select id="getReservasByUser" resultMap="ReservaMap">
+        SELECT * FROM t_reserva t1 WHERE t1.id_usuario = #{id_usuario} ORDER BY id DESC LIMIT 10 
+    </select>
+    
     <select id="getDistancia" resultType="java.util.LinkedHashMap">
         SELECT 
         t1.*, t2.tarifa_reserva, t2.nueva_tarifa, t2.tarifa_estacionamiento, 
@@ -44,12 +82,16 @@
     </select>
     
     <insert id="saveReserva">
-        INSERT INTO `t_reserva` (`id_usuario`, `id_playa`, `fecha_reserva`, `precio_reserva`, `sha_reserva`) 
-        VALUES (#{reserva.idUsuario}, #{reserva.idPlaya}, #{reserva.fechaReserva}, #{reserva.precioReserva}, #{reserva.shaReserva})
+        INSERT INTO `t_reserva` (`id_usuario`, `id_playa`, `fecha_reserva`, `precio_reserva`, `sha_reserva`, `id_vehiculo`) 
+        VALUES (#{reserva.idUsuario}, #{reserva.idPlaya}, #{reserva.fechaReserva}, #{reserva.precioReserva}, #{reserva.shaReserva}, #{reserva.idVehiculo})
     </insert>
     
     <update id="updateTarifa">
         UPDATE t_tarifa SET nueva_tarifa=#{tarifa}, fregistro = NOW() WHERE id=#{idPlaya}
+    </update>
+    
+    <update id="cancelarReserva">
+        UPDATE t_reserva SET estado='C' WHERE id=#{idReserva}
     </update>
     
     

@@ -6,6 +6,7 @@
 package com.parking.app.entity;
 
 import java.util.Date;
+import java.util.List;
 import lombok.Data;
 
 /**
@@ -20,5 +21,6 @@ public class TUsuario {
     private String email;
     private String tokenFb;
     private Date fregistro;
+    private List<TVehiculo> vehiculos;
 
 }

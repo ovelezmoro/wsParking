@@ -5,7 +5,6 @@
  */
 package com.parking.app.entity;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import lombok.Data;
@@ -23,5 +22,9 @@ public class TReserva {
     private Integer idPlaya;
     private Integer idUsuario;
     private String shaReserva;
+    private Integer idVehiculo;
+    private String estado;
+    private TUsuario usuario;
+    private TVehiculo vehiculo;
 
 }
