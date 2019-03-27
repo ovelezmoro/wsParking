@@ -6,7 +6,11 @@
 package com.parking.app.service.impl;
 
 import com.parking.app.dao.IParkingDAO;
+import com.parking.app.dao.IPlayaDAO;
+import com.parking.app.dao.IReservaDAO;
+import com.parking.app.dao.ITarifaDAO;
 import com.parking.app.dto.TReservaDTO;
+import com.parking.app.entity.TPlaya;
 import com.parking.app.entity.TReserva;
 import com.parking.app.entity.TUsuario;
 import com.parking.app.entity.TVehiculo;
@@ -31,9 +35,18 @@ public class ParkingServiceImpl implements IParkingService {
     @Autowired
     IEmailService iEmailService;
 
+    @Autowired
+    IPlayaDAO iPlayaDAO;
+
+    @Autowired
+    IReservaDAO iReservaDAO;
+
+    @Autowired
+    ITarifaDAO iTarifaDAO;
+
     @Override
     public List<Map<String, Object>> getAllByDitancia(Double latitud, Double longitud, Double distancia) {
-        return iParkingDAO.getDistancia(latitud, longitud, distancia);
+        return iPlayaDAO.getCercanos(latitud, longitud, distancia);
     }
 
     @Override
@@ -62,15 +75,11 @@ public class ParkingServiceImpl implements IParkingService {
     @Override
     public TReserva updateReserva(Integer idreserva, TReservaDTO reserva) {
 
-        TReserva tReserva = iParkingDAO.getReserva(idreserva);
+        TReserva tReserva = iReservaDAO.findOne(idreserva);
         tReserva.setFechaReserva(reserva.getFechaReserva());
         tReserva.setIdVehiculo(reserva.getIdVehiculo());
 
-//        TReserva tReserva = new TReserva();
-//        tReserva.setId(idreserva);
-//        tReserva.setFechaReserva(reserva.getFechaReserva());
-//        tReserva.setIdVehiculo(reserva.getIdVehiculo());
-        iParkingDAO.updateReserva(tReserva);
+        iReservaDAO.update(tReserva);
         Thread thread = new Thread(() -> {
             iEmailService.sendMail(new String[]{"ovelezmoro@gmail.com"}, "ACTUALIZACION DE RESERVA: " + tReserva.getShaReserva(), "RESERVA REGISTRADA PARA EL " + StrUtil.getDate(tReserva.getFechaReserva(), "dd/MM/yyyy") + " A LAS " + StrUtil.getDate(tReserva.getFechaReserva(), "hh:mm"));
         });
@@ -79,20 +88,18 @@ public class ParkingServiceImpl implements IParkingService {
     }
 
     @Override
-    public List<Map<String, Object>> getAllPlayas() {
-        return iParkingDAO.getAllPlayas();
+    public List<TPlaya> getAllPlayas() {
+        return iPlayaDAO.find();
     }
 
     @Override
     public List<Map<String, Object>> getProbabilidad(Integer hora, String dia, Integer idPlaya) {
-
         return iParkingDAO.getProbabilidad(hora, dia, idPlaya);
 
     }
 
     @Override
     public void actualizarTarifa(Integer idPlaya, Double tarifa) {
-
         iParkingDAO.updateTarifa(idPlaya, tarifa);
     }
 

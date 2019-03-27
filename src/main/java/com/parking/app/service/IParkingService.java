@@ -6,6 +6,7 @@
 package com.parking.app.service;
 
 import com.parking.app.dto.TReservaDTO;
+import com.parking.app.entity.TPlaya;
 import com.parking.app.entity.TReserva;
 import com.parking.app.entity.TUsuario;
 import com.parking.app.entity.TVehiculo;
@@ -20,10 +21,10 @@ public interface IParkingService {
 
     List<Map<String, Object>> getAllByDitancia(Double latitud, Double longitud, Double distancia);
 
-    List<Map<String, Object>> getAllPlayas();
+    List<TPlaya> getAllPlayas();
 
     TReserva saveReserva(TReservaDTO reserva);
-    
+
     TReserva updateReserva(Integer idreserva, TReservaDTO reserva);
 
     List<Map<String, Object>> getProbabilidad(Integer hora, String dia, Integer idPlaya);

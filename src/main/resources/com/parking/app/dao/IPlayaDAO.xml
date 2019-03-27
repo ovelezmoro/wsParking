@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.parking.app.dao.IPlayaDAO">
+    
+    <select id="find" resultType="java.util.LinkedHashMap">
+        SELECT * FROM t_playa
+    </select>
+    
+    <select id="findByLatitudAndLogitudAndDistanciaWithTarifas" resultType="java.util.LinkedHashMap">
+        SELECT 
+        t1.*, t2.tarifa_reserva, t2.nueva_tarifa, t2.tarifa_estacionamiento, 
+        (SELECT count(*) from t_reserva where t_reserva.id_playa = t1.id and fecha_reserva = NOW()) as reservados, 
+        (6371 * ACOS(SIN(RADIANS(t1.latitud)) * SIN(RADIANS(#{latitud})) + COS(RADIANS(t1.longitud - #{longitud})) * COS(RADIANS(t1.latitud)) * COS(RADIANS(#{latitud})))) as distance 
+        FROM t_playa t1, t_tarifa t2 
+        WHERE t1.id=t2.id_playa 
+        AND (6371 * ACOS(SIN(RADIANS(t1.latitud)) * SIN(RADIANS(#{latitud})) + COS(RADIANS(t1.longitud - #{longitud})) * COS(RADIANS(latitud)) * COS(RADIANS(#{latitud})))) &lt; #{distancia}
+        ORDER BY distance ASC
+    </select>
+    
+    <select id="getCercanos" resultType="java.util.LinkedHashMap">
+        SELECT 
+        t1.*, t2.tarifa_reserva, t2.nueva_tarifa, t2.tarifa_estacionamiento, 
+        (SELECT count(*) from t_reserva where t_reserva.id_playa = t1.id and fecha_reserva = NOW()) as reservados, 
+        (6371 * ACOS(SIN(RADIANS(t1.latitud)) * SIN(RADIANS(#{latitud})) + COS(RADIANS(t1.longitud - #{longitud})) * COS(RADIANS(t1.latitud)) * COS(RADIANS(#{latitud})))) as distance 
+        FROM t_playa t1, t_tarifa t2 
+        WHERE t1.id=t2.id_playa 
+        AND (6371 * ACOS(SIN(RADIANS(t1.latitud)) * SIN(RADIANS(#{latitud})) + COS(RADIANS(t1.longitud - #{longitud})) * COS(RADIANS(latitud)) * COS(RADIANS(#{latitud})))) &lt; #{distancia}
+        ORDER BY distance ASC
+    </select>
+    
+    
+</mapper>

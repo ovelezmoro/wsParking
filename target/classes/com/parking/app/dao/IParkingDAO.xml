@@ -59,8 +59,6 @@
         SELECT * FROM t_playa
     </select>
     
-    
-    
     <select id="getPlaya" resultType="java.util.LinkedHashMap">
         SELECT t2.*, t1.tarifa_estacionamiento, t1.tarifa_reserva, t1.nueva_tarifa FROM t_tarifa t1, t_playa t2 WHERE t1.id_playa = t2.id AND t2.id = #{id_playa}
     </select>

@@ -5,22 +5,43 @@
  */
 package com.parking.app.entity;
 
+import com.parking.app.dto.SingInDTO;
 import java.util.Date;
 import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  *
  * @author Osmar Velezmoro <SIS-SINTAD>
  */
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class TUsuario {
 
     private Integer id;
     private String nombre;
     private String email;
-    private String tokenFb;
-    private Date fregistro;
+    private String photoUrl;
+    private String phone;
+    private String uid;
+    private String loginWith;
     private List<TVehiculo> vehiculos;
+
+    public TUsuario(SingInDTO singInDTO) {
+        this.nombre = singInDTO.getNombre();
+        this.email = singInDTO.getEmail();
+        this.photoUrl = singInDTO.getPhotoURL();
+        this.phone = singInDTO.getPhone();
+        this.uid = singInDTO.getUid();
+        this.loginWith = singInDTO.getLoginWith();
+    }
 
 }

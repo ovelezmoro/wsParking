@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.parking.app.dao.IReservaDAO">
+    
+    <resultMap id="ReservaMap" type="TReserva">
+        <id property="idUsuario" column="id_usuario"></id>
+        <id property="idVehiculo" column="id_vehiculo"></id>
+        <id property="idPlaya" column="id_playa"></id>
+        <association property="usuario" column="id_usuario" 
+                     javaType="TUsuario" select="com.parking.app.dao.IParkingDAO.getUsuario">
+        </association>
+        <association property="vehiculo" column="id_vehiculo" 
+                     javaType="TVehiculo" select="com.parking.app.dao.IParkingDAO.getVehiculo">
+        </association>
+        <association property="playa" column="id_playa" 
+                     javaType="TPlaya" select="com.parking.app.dao.IParkingDAO.getOnePlaya">
+        </association>
+    </resultMap>
+    
+    <select id="findLastTicket" resultMap="ReservaMap">
+        SELECT * FROM t_reserva
+        WHERE id_usuario = #{id_usuario}
+        AND id_vehiculo = (SELECT id_vehiculo from t_vehiculo where placa = #{placa})
+        AND estado = 'R'
+        ORDER BY fecha_reserva DESC
+        LIMIT 1
+    </select>
+    
+</mapper>

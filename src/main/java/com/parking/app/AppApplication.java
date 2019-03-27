@@ -1,7 +1,8 @@
 package com.parking.app;
 
-import com.parking.app.dao.IParkingDAO;
-import org.springframework.beans.factory.annotation.Autowired;
+import java.io.File;
+import java.io.InputStream;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -22,6 +23,13 @@ public class AppApplication extends SpringBootServletInitializer implements Comm
 
     @Override
     public void run(String... args) throws Exception {
+//        File script = new File("./chatbot/server.py");
+//        String[] params = new String[2];
+//        params[0] = "python";
+//        params[1] = script.getAbsolutePath();
+//
+//        Process exec = Runtime.getRuntime().exec(params);
+//        exec.waitFor();
         
     }
 

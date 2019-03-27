@@ -29,11 +29,11 @@ public interface IParkingDAO {
     List<TReserva> getReservasByUser(@Param("id_usuario") Integer id_usuario);
 
     TReserva getReserva(@Param("reserva") Integer reserva);
-    
+
     List<Map<String, Object>> getDistancia(@Param("latitud") Double latitud, @Param("longitud") Double longitud, @Param("distancia") Double distancia);
 
     void saveReserva(@Param("reserva") TReserva reserva);
-    
+
     void updateReserva(@Param("reserva") TReserva reserva);
 
     List<Map<String, Object>> getAllPlayas();
@@ -51,5 +51,4 @@ public interface IParkingDAO {
     void cancelarReserva(@Param("idReserva") Integer idReserva);
 
     List<TVehiculo> getVehiculosByUser(@Param("usuario") Integer usuario);
-
 }
