@@ -3,11 +3,11 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.parking.app.dao.IPlayaDAO">
-    
-    <select id="find" resultType="java.util.LinkedHashMap">
+
+    <select id="find" resultType="TPlaya">
         SELECT * FROM t_playa
     </select>
-    
+
     <select id="findByLatitudAndLogitudAndDistanciaWithTarifas" resultType="java.util.LinkedHashMap">
         SELECT 
         t1.*, t2.tarifa_reserva, t2.nueva_tarifa, t2.tarifa_estacionamiento, 
@@ -18,7 +18,7 @@
         AND (6371 * ACOS(SIN(RADIANS(t1.latitud)) * SIN(RADIANS(#{latitud})) + COS(RADIANS(t1.longitud - #{longitud})) * COS(RADIANS(latitud)) * COS(RADIANS(#{latitud})))) &lt; #{distancia}
         ORDER BY distance ASC
     </select>
-    
+
     <select id="getCercanos" resultType="java.util.LinkedHashMap">
         SELECT 
         t1.*, t2.tarifa_reserva, t2.nueva_tarifa, t2.tarifa_estacionamiento, 
@@ -29,6 +29,10 @@
         AND (6371 * ACOS(SIN(RADIANS(t1.latitud)) * SIN(RADIANS(#{latitud})) + COS(RADIANS(t1.longitud - #{longitud})) * COS(RADIANS(latitud)) * COS(RADIANS(#{latitud})))) &lt; #{distancia}
         ORDER BY distance ASC
     </select>
-    
-    
+
+    <select id="findOne" resultType="TPlaya">
+         SELECT * FROM t_playa where id = #{id}
+    </select>
+
+
 </mapper>

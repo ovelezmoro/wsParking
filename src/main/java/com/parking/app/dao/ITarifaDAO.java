@@ -18,7 +18,17 @@ import org.springframework.stereotype.Repository;
  */
 @Mapper
 @Repository
-public interface ITarifaDAO extends ICrudRepository<TTarifa, Integer> {
+public interface ITarifaDAO {
+
+    void save(TTarifa t);
+
+    void update(TTarifa t);
+
+    void delete(Integer id);
+
+    List<TTarifa> find();
+
+    TTarifa findOne(Integer id);
 
     List<Map<String, Object>> findWithPlaya(Integer id);
 

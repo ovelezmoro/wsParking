@@ -6,21 +6,33 @@
 package com.parking.app.dao;
 
 import com.parking.app.entity.TVehiculo;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 /**
- *
  * @author Administrador
  */
 @Mapper
 @Repository
-public interface IVehiculoDAO extends ICrudRepository<TVehiculo, Integer> {
+public interface IVehiculoDAO {
 
-    List<TVehiculo> findByIdUsuario(@Param("id_usuario") Integer id_usuario);
-    
+    void save(TVehiculo t);
+
+    void update(TVehiculo t);
+
+    void delete(Integer id);
+
+    List<TVehiculo> find();
+
+    TVehiculo findOne(Integer id);
+
+    List<TVehiculo> findByIdUsuario(@Param("idUsuario") Integer idUsuario);
+
     TVehiculo findByPlaca(@Param("placa") String placa);
+
 
 }

@@ -6,6 +6,7 @@
 package com.parking.app.service.impl;
 
 import com.parking.app.service.INotificationService;
+
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
@@ -13,10 +14,10 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+
 import org.springframework.stereotype.Service;
 
 /**
- *
  * @author Administrador
  */
 @Service

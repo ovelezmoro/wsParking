@@ -17,12 +17,12 @@ import com.amazonaws.services.rekognition.model.DetectTextResult;
 import com.amazonaws.services.rekognition.model.Image;
 import com.amazonaws.services.rekognition.model.Label;
 import com.amazonaws.services.rekognition.model.TextDetection;
+import com.parking.app.dao.IPlayaDAO;
 import com.parking.app.dao.IReservaDAO;
 import com.parking.app.dao.IUsuarioDAO;
 import com.parking.app.dao.IVehiculoDAO;
 import com.parking.app.entity.TReserva;
 import com.parking.app.entity.TVehiculo;
-import com.parking.app.service.IParkingService;
 import com.parking.app.util.MathUtil;
 
 import static com.parking.app.util.Util.CREDENTIALS;
@@ -62,13 +62,13 @@ public class AWSRekognitionController {
     IReservaDAO iReservaDAO;
 
     @Autowired
-    IUsuarioDAO iUsuarioDAO;
-
-    @Autowired
     IVehiculoDAO iVehiculoDAO;
 
     @Autowired
-    IParkingService iParkingService;
+    IPlayaDAO iPlayaDAO;
+
+    @Autowired
+    IUsuarioDAO iUsuarioDAO;
 
     AmazonRekognition rekognitionClient = AmazonRekognitionClientBuilder
             .standard()
@@ -78,7 +78,6 @@ public class AWSRekognitionController {
 
     @CrossOrigin(origins = {"http://localhost:8100", "file://", "*"})
     @RequestMapping(method = {RequestMethod.OPTIONS, RequestMethod.POST}, value = "addVehiculo", produces = "application/json", consumes = "application/json")
-    @ApiOperation(value = "addVehiculo", nickname = "Detect Text From File Base64", response = List.class)
     @ResponseBody
     public Map<String, Object> addVehiculo(@RequestBody(required = true) Map<String, String> photo) throws IOException, AmazonRekognitionException {
 
@@ -123,7 +122,6 @@ public class AWSRekognitionController {
 
     @CrossOrigin(origins = {"http://localhost:8100", "file://", "*"})
     @RequestMapping(method = {RequestMethod.OPTIONS, RequestMethod.POST}, value = "consultaTicket", produces = "application/json", consumes = "application/json")
-    @ApiOperation(value = "consultaTicket", nickname = "Consulta Ticket por Imagen de Placa", response = List.class)
     @ResponseBody
     public TReserva consultaTicket(@RequestBody(required = true) Map<String, String> photo) throws IOException, AmazonRekognitionException {
 
@@ -133,7 +131,14 @@ public class AWSRekognitionController {
 
         TextDetection detection = detectTextRequest(decoded);
 
-        return iReservaDAO.findLastTicket(photo.get("usuario"), detection.getDetectedText());
+        TReserva reserva = iReservaDAO.findLastTicket(photo.get("usuario"), detection.getDetectedText());
+
+
+        reserva.setUsuario(iUsuarioDAO.findOne(reserva.getIdUsuario()));
+        reserva.setPlaya(iPlayaDAO.findOne(reserva.getIdPlaya()));
+        reserva.setVehiculo(iVehiculoDAO.findOne(reserva.getIdVehiculo()));
+
+        return reserva;
 
     }
 

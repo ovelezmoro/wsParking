@@ -5,21 +5,20 @@
  */
 package com.parking.app.controller;
 
-import com.parking.app.service.IParkingService;
+import com.parking.app.dao.IParkingDAO;
 import com.parking.app.util.DateUtil;
 import com.parking.app.util.MathUtil;
 import com.parking.app.util.StrUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Calendar;
-import java.util.List;
 import java.util.Map;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -32,17 +31,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- *
  * @author Osmar Velezmoro <SIS-SINTAD>
  */
 @Slf4j
-@Api
 @RestController
 @RequestMapping("python/")
 public class PythonController {
 
     @Autowired
-    IParkingService iParkingService;
+    IParkingDAO iParkingDAO;
 
     @Value("${python.probabilidad.host}")
     private String host;
@@ -62,19 +59,15 @@ public class PythonController {
     @Value("${python.probabilidad.database}")
     private String database;
 
-    @Autowired
-    private ResourceLoader resourceLoader;
-
     @CrossOrigin(origins = "*", allowCredentials = "false")
     @RequestMapping(method = RequestMethod.GET, value = "getSugerenciaByPython")
-    @ApiOperation(value = "getSugerenciaByPython", nickname = "Obtener disponibilidad usando proyecciones", response = String.class)
     @ResponseBody
     public Map<String, Object> getSugerenciaByPython(
             @ApiParam(value = "dia", required = true) @RequestParam(value = "dia", required = true) String dia,
             @ApiParam(value = "hora", required = true) @RequestParam(value = "hora", required = true) Integer hora,
             @ApiParam(value = "playa", required = true) @RequestParam(value = "playa", required = true) Integer playa) throws InterruptedException, IOException {
 
-        Map<String, Object> map = iParkingService.getPlaya(playa);
+        Map<String, Object> map = iParkingDAO.getPlaya(playa);
 
         String[] params = new String[10];
         File script = new File("probabilidad.py");

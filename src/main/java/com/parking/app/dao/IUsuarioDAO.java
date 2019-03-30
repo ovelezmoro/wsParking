@@ -9,16 +9,27 @@ import com.parking.app.entity.TUsuario;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
- *
  * @author Administrador
  */
 @Mapper
 @Repository
-public interface IUsuarioDAO extends ICrudRepository<TUsuario, Integer> {
+public interface IUsuarioDAO {
+
+    void save(TUsuario t);
+
+    void update(TUsuario t);
+
+    void delete(Integer id);
+
+    List<TUsuario> find();
+
+    TUsuario findOne(Integer id);
 
     TUsuario findByUid(String uid);
-    
+
 }
 
 
