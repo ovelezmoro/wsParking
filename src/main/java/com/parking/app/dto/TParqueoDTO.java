@@ -18,5 +18,6 @@ public class TParqueoDTO {
     private String entrada;
     private String zona;
     private String observaciones;
+    private String image;
 
 }

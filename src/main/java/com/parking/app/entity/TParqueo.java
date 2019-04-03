@@ -20,6 +20,7 @@ public class TParqueo {
     private String entrada;
     private String zona;
     private String observaciones;
+    private String image;
 
     public TParqueo(TParqueoDTO parqueoDTO) {
         this.placa = parqueoDTO.getPlaca();
@@ -30,5 +31,6 @@ public class TParqueo {
         this.entrada = parqueoDTO.getEntrada();
         this.zona = parqueoDTO.getZona();
         this.observaciones = parqueoDTO.getObservaciones();
+        this.image = parqueoDTO.getImage();
     }
 }
