@@ -21,5 +21,7 @@ public class AutorizacionDTO {
     private String ano;
     private String hsalida;
     private String firma;
+    private Integer idUsuario;
+
 
 }

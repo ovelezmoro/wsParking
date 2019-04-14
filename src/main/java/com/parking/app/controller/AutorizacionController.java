@@ -10,8 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.*;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -39,7 +37,7 @@ public class AutorizacionController {
         String photo = image.get("imagen").replace("data:image/png;base64,", "");
         byte[] decoded = Base64.decodeBase64(photo);
 
-        String time = StrUtil.getString(new Date().getTime());
+        String time  = StrUtil.getString(new Date().getTime());
 
         try (BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(new FileOutputStream("firmas/" + time + ".png"))) {
             bufferedOutputStream.write(decoded);
@@ -64,6 +62,27 @@ public class AutorizacionController {
 
         return tAutorizacion;
 
+    }
+
+    @CrossOrigin(origins = {"http://localhost:8100", "file://", "*"})
+    @RequestMapping(method = {RequestMethod.OPTIONS, RequestMethod.POST}, value = "consultaPlaca", produces = "application/json", consumes = "application/json")
+    @ResponseBody
+    public Map<String, Object> consultaPlaca(@RequestBody(required = true) Map<String, String> request) throws IOException {
+
+        String placa = request.get("texto");
+        TAutorizacion autorizacion = iAutorizacionDAO.findByPlaca(placa);
+        Map<String, Object> map = new HashMap<>();
+        if (autorizacion != null) {
+            File file = new File("firmas/" + autorizacion.getFirma());
+
+            FileInputStream fileInputStreamReader = new FileInputStream(file);
+            byte[] bytes = new byte[(int)file.length()];
+            fileInputStreamReader.read(bytes);
+            map.put("imagen", new String(Base64.encodeBase64(bytes)));
+            map.put("autorizacion", autorizacion);
+            return map;
+        }
+        return null;
     }
 
 

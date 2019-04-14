@@ -9,7 +9,11 @@
     </select>
 
     <insert id="save" parameterType="TAutorizacion">
-        INSERT INTO t_autorizacion VALUES (NULL, #{nombre}, #{email}, #{photoUrl}, #{uid}, #{loginWith}, #{phone}, 'U')
+        INSERT INTO t_autorizacion VALUES (NULL, #{dni}, #{nombres}, #{direccion}, #{telefono}, #{brevete}, #{tpropiedad}, #{marca}, #{placa}, #{color}, #{ano}, #{hsalida}, #{firma}, #{idUsuario})
     </insert>
+
+    <select id="findByPlaca" resultType="TAutorizacion" parameterType="String">
+        SELECT * FROM t_autorizacion WHERE placa = #{placa} ORDER BY id DESC LIMIT 1
+    </select>
 
 </mapper>

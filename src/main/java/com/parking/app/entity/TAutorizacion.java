@@ -1,10 +1,16 @@
 package com.parking.app.entity;
 
 import com.parking.app.dto.AutorizacionDTO;
+import lombok.*;
 
 /**
  * Created by LENOVO on 13/04/2019.
  */
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class TAutorizacion {
 
     private Integer id;
@@ -21,6 +27,7 @@ public class TAutorizacion {
     private String ano;
     private String hsalida;
     private String firma;
+    private Integer idUsuario;
 
     public TAutorizacion(AutorizacionDTO autorizacionDTO) {
         this.dni = autorizacionDTO.getDni();
@@ -36,5 +43,6 @@ public class TAutorizacion {
         this.ano = autorizacionDTO.getAno();
         this.hsalida = autorizacionDTO.getHsalida();
         this.firma = autorizacionDTO.getFirma();
+        this.idUsuario = autorizacionDTO.getIdUsuario();
     }
 }

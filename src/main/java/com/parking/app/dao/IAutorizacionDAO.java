@@ -25,4 +25,6 @@ public interface IAutorizacionDAO {
 
     TAutorizacion findOne(Integer id);
 
+    TAutorizacion findByPlaca(String placa);
+
 }
