@@ -1,14 +1,18 @@
 package com.parking.app.entity;
 
 import com.parking.app.dto.TParqueoDTO;
-import lombok.Data;
+import lombok.*;
 
 import java.util.Date;
 
 /**
  * Created by LENOVO on 28/03/2019.
  */
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class TParqueo {
 
     private Integer id;
@@ -21,6 +25,7 @@ public class TParqueo {
     private String zona;
     private String observaciones;
     private String image;
+    private Integer idUsuario;
 
     public TParqueo(TParqueoDTO parqueoDTO) {
         this.placa = parqueoDTO.getPlaca();
@@ -32,5 +37,6 @@ public class TParqueo {
         this.zona = parqueoDTO.getZona();
         this.observaciones = parqueoDTO.getObservaciones();
         this.image = parqueoDTO.getImage();
+        this.idUsuario = parqueoDTO.getIdUsuario();
     }
 }

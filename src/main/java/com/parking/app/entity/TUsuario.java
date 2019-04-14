@@ -33,6 +33,7 @@ public class TUsuario {
     private String phone;
     private String uid;
     private String loginWith;
+    private String tipo;
     private List<TVehiculo> vehiculos;
 
     public TUsuario(SingInDTO singInDTO) {

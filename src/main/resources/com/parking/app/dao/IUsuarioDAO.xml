@@ -13,7 +13,7 @@
     </select>
 
     <insert id="save" parameterType="TUsuario">
-        INSERT INTO t_usuario VALUES (NULL, #{nombre}, #{email}, #{photoUrl}, #{uid}, #{loginWith}, #{phone})
+        INSERT INTO t_usuario VALUES (NULL, #{nombre}, #{email}, #{photoUrl}, #{uid}, #{loginWith}, #{phone}, 'U')
     </insert>
 
     <update id="update" parameterType="TUsuario">

@@ -133,19 +133,48 @@ public class AWSRekognitionController {
 
         TReserva reserva = iReservaDAO.findLastTicket(photo.get("usuario"), detection.getDetectedText());
 
+        if (reserva != null) {
+            reserva.setUsuario(iUsuarioDAO.findOne(reserva.getIdUsuario()));
+            reserva.setPlaya(iPlayaDAO.findOne(reserva.getIdPlaya()));
+            reserva.setVehiculo(iVehiculoDAO.findOne(reserva.getIdVehiculo()));
 
-        reserva.setUsuario(iUsuarioDAO.findOne(reserva.getIdUsuario()));
-        reserva.setPlaya(iPlayaDAO.findOne(reserva.getIdPlaya()));
-        reserva.setVehiculo(iVehiculoDAO.findOne(reserva.getIdVehiculo()));
+            return reserva;
+        }
 
-        return reserva;
+        return null;
+
 
     }
 
+    @CrossOrigin(origins = {"http://localhost:8100", "file://", "*"})
+    @RequestMapping(method = {RequestMethod.OPTIONS, RequestMethod.POST}, value = "consultaPlaca", produces = "application/json", consumes = "application/json")
+    @ResponseBody
+    public Map<String, Object> consultaPlaca(@RequestBody(required = true) Map<String, String> photo) throws IOException, AmazonRekognitionException {
+        Map<String, Object> response = new HashMap<>();
+        response.put("status", "error");
+        response.put("message", "No se detecto una placa valida");
+        response.put("placa", "");
+        String image = photo.get("imagen");
+        boolean isVehicle = false;
+        byte[] decoded = Base64.decodeBase64(image);
+        for (Label label : detectLabelsRequest(decoded)) {
+            if (label.getName().equals("Vehicle") && label.getConfidence() > 80) {
+                isVehicle = true;
+            }
+        }
+        if (isVehicle) {
+            TextDetection detection = detectTextRequest(decoded);
+            response.put("status", "OK");
+            response.put("message", "Placa " + detection.getDetectedText() + " encontrada exitosamente");
+            response.put("placa", detection.getDetectedText());
+        }
+        return response;
+    }
+
+
     private List<Label> detectLabelsRequest(byte[] image) {
         DetectLabelsRequest requestLabel = new DetectLabelsRequest()
-                .withImage(new Image()
-                        .withBytes(ByteBuffer.wrap(image)))
+                .withImage(new Image().withBytes(ByteBuffer.wrap(image)))
                 .withMaxLabels(10)
                 .withMinConfidence(77F);
 

@@ -25,5 +25,7 @@ public interface IParqueoDAO {
 
     TParqueo findOne(Integer id);
 
+    TParqueo findByPlaca(String placa);
+
 
 }
