@@ -27,4 +27,6 @@ public interface IAutorizacionDAO {
 
     TAutorizacion findByPlaca(String placa);
 
+    List<TAutorizacion> findByDni(String dni);
+
 }

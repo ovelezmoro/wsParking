@@ -9,6 +9,7 @@ import lombok.Data;
 public class AutorizacionDTO {
 
     private String dni;
+    private String playa;
     private String nombres;
     private String direccion;
     private String telefono;
