@@ -23,7 +23,7 @@
         SELECT * FROM t_reserva
         WHERE id_usuario = #{id_usuario}
         AND id_vehiculo = (SELECT id_vehiculo from t_vehiculo where placa = #{placa})
-        AND estado = 'R'
+        AND estado = 'I'
         ORDER BY fecha_reserva DESC
         LIMIT 1
     </select>

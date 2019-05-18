@@ -17,10 +17,8 @@ import com.amazonaws.services.rekognition.model.DetectTextResult;
 import com.amazonaws.services.rekognition.model.Image;
 import com.amazonaws.services.rekognition.model.Label;
 import com.amazonaws.services.rekognition.model.TextDetection;
-import com.parking.app.dao.IPlayaDAO;
-import com.parking.app.dao.IReservaDAO;
-import com.parking.app.dao.IUsuarioDAO;
-import com.parking.app.dao.IVehiculoDAO;
+import com.parking.app.dao.*;
+import com.parking.app.entity.TPlaya;
 import com.parking.app.entity.TReserva;
 import com.parking.app.entity.TVehiculo;
 import com.parking.app.util.MathUtil;
@@ -69,6 +67,9 @@ public class AWSRekognitionController {
 
     @Autowired
     IUsuarioDAO iUsuarioDAO;
+
+    @Autowired
+    ITarifaDAO iTarifaDAO;
 
     AmazonRekognition rekognitionClient = AmazonRekognitionClientBuilder
             .standard()
@@ -135,7 +136,10 @@ public class AWSRekognitionController {
 
         if (reserva != null) {
             reserva.setUsuario(iUsuarioDAO.findOne(reserva.getIdUsuario()));
-            reserva.setPlaya(iPlayaDAO.findOne(reserva.getIdPlaya()));
+
+            TPlaya playa = iPlayaDAO.findOne(reserva.getIdPlaya());
+            playa.setTarifa(iTarifaDAO.findByPlaya(playa.getId()));
+            reserva.setPlaya(playa);
             reserva.setVehiculo(iVehiculoDAO.findOne(reserva.getIdVehiculo()));
 
             return reserva;

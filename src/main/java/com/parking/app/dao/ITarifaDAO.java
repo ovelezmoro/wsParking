@@ -34,4 +34,6 @@ public interface ITarifaDAO {
 
     void updateByIdPlaya(@Param("id_playa") Integer idPlaya, @Param("tarifa") Double tarifa);
 
+    TTarifa findByPlaya(Integer id_playa);
+
 }

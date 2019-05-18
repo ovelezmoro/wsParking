@@ -27,5 +27,7 @@ public class TReserva {
     private TUsuario usuario;
     private TVehiculo vehiculo;
     private TPlaya playa;
+    private Date fechaIngreso;
+    private Date fechaSalida;
 
 }

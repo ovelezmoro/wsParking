@@ -29,4 +29,6 @@ public class TPlaya {
     private String capacidad;
     private Integer abonados;
 
+    private TTarifa tarifa;
+
 }

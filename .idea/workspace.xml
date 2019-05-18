@@ -2,36 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4aaef5c8-ac10-4f45-a726-f16bf7c85b61" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/parking/app/dao/ITarifaDAO.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/parking/app/controller/AutorizacionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/parking/app/controller/AutorizacionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/parking/app/controller/ParqueoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/parking/app/controller/ParqueoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/parking/app/dao/IAutorizacionDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/parking/app/dao/IAutorizacionDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/parking/app/dto/AutorizacionDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/parking/app/dto/AutorizacionDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/parking/app/entity/TAutorizacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/parking/app/entity/TAutorizacion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/parking/app/dao/IAutorizacionDAO.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/parking/app/dao/IAutorizacionDAO.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/parking/app/AppApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/parking/app/AppApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/parking/app/dao/IParkingDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/parking/app/dao/IParkingDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/parking/app/dto/CancelReservaResponseDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/parking/app/dto/CancelReservaResponseDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/parking/app/dto/TReservaDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/parking/app/dto/TReservaDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/parking/app/dto/TTarifaDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/parking/app/dto/TTarifaDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/parking/app/entity/TData.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/parking/app/entity/TData.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/parking/app/controller/AWSRekognitionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/parking/app/controller/AWSRekognitionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/parking/app/dao/ITarifaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/parking/app/dao/ITarifaDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/parking/app/entity/TPlaya.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/parking/app/entity/TPlaya.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/parking/app/entity/TReserva.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/parking/app/entity/TReserva.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/parking/app/dao/IReservaDAO.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/parking/app/dao/IReservaDAO.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/parking/app/entity/TPlaya.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/parking/app/entity/TPlaya.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/parking/app/entity/TReserva.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/parking/app/entity/TReserva.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/parking/app/entity/TTarifa.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/parking/app/entity/TTarifa.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/parking/app/entity/TUsuario.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/parking/app/entity/TUsuario.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/parking/app/entity/TVehiculo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/parking/app/entity/TVehiculo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/parking/app/service/IEmailService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/parking/app/service/IEmailService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/parking/app/service/impl/EmailServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/parking/app/service/impl/EmailServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/parking/app/util/DateUtil$DateTipe.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/parking/app/util/DateUtil$DateTipe.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/parking/app/util/DateUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/parking/app/util/DateUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/parking/app/util/FileUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/parking/app/util/FileUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/parking/app/util/MapsUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/parking/app/util/MapsUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/parking/app/util/MathUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/parking/app/util/MathUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/parking/app/util/StrUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/parking/app/util/StrUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wsParking.iml" beforeDir="false" afterPath="$PROJECT_DIR$/wsParking.iml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -53,57 +32,39 @@
     <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/parking/app/controller/AutorizacionController.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/parking/app/dao/ITarifaDAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="89" column="33" lean-forward="true" selection-start-line="89" selection-start-column="33" selection-end-line="89" selection-end-column="33" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="405">
+              <caret line="36" column="23" selection-start-line="36" selection-start-column="12" selection-end-line="36" selection-end-column="23" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/parking/app/entity/TAutorizacion.java">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/com/parking/app/dao/ITarifaDAO.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="370">
-              <caret line="36" column="44" selection-start-line="36" selection-start-column="44" selection-end-line="36" selection-end-column="44" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/parking/app/dao/IAutorizacionDAO.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="16">
-              <caret line="15" column="33" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="33" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="105">
+              <caret line="7" column="48" selection-start-line="7" selection-start-column="48" selection-end-line="7" selection-end-column="48" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/com/parking/app/dao/IAutorizacionDAO.xml">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/parking/app/controller/PlayaController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="229">
-              <caret line="19" column="67" lean-forward="true" selection-start-line="19" selection-start-column="67" selection-end-line="19" selection-end-column="67" />
+            <state relative-caret-position="167">
+              <caret line="51" column="47" selection-start-line="51" selection-start-column="47" selection-end-line="51" selection-end-column="47" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/parking/app/controller/ReservaController.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/parking/app/entity/TPlaya.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-91">
-              <caret line="111" column="47" selection-start-line="111" selection-start-column="47" selection-end-line="111" selection-end-column="47" />
+            <state relative-caret-position="275">
+              <caret line="31" column="27" selection-start-line="31" selection-start-column="27" selection-end-line="31" selection-end-column="27" />
             </state>
           </provider>
         </entry>
@@ -132,11 +93,12 @@
       <find>getReservasByUser</find>
       <find>findByIdUsuario</find>
       <find>ReservaMap</find>
-      <find>consultaTicket</find>
       <find>detectLabelsRequest</find>
       <find>decoded</find>
       <find>save</find>
       <find>consultaPlaca</find>
+      <find>consultaTicket</find>
+      <find>findLastTicket</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -153,12 +115,10 @@
         <option value="$PROJECT_DIR$/src/main/java/com/parking/app/controller/PythonController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parking/app/controller/TarifaController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/com/parking/app/dao/IVehiculoDAO.xml" />
-        <option value="$PROJECT_DIR$/src/main/resources/com/parking/app/dao/IReservaDAO.xml" />
         <option value="$MAVEN_REPOSITORY$/org/springframework/spring-web/5.1.3.RELEASE/spring-web-5.1.3.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class" />
         <option value="$PROJECT_DIR$/src/main/java/com/parking/app/dao/IParkingDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parking/app/dao/IPlayaDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parking/app/dao/IReservaDAO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/parking/app/dao/ITarifaDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parking/app/dao/IUsuarioDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parking/app/dao/IVehiculoDAO.java" />
         <option value="$PROJECT_DIR$/src/main/resources/com/parking/app/dao/IPlayaDAO.xml" />
@@ -171,7 +131,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/parking/app/entity/TParqueo.java" />
         <option value="$PROJECT_DIR$/src/main/resources/com/parking/app/dao/IParqueoDAO.xml" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/parking/app/controller/AWSRekognitionController.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/main/java/com/parking/app/controller/ParqueoController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
@@ -180,6 +139,12 @@
         <option value="$PROJECT_DIR$/src/main/java/com/parking/app/dto/AutorizacionDTO.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parking/app/controller/AutorizacionController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/com/parking/app/dao/IAutorizacionDAO.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/parking/app/entity/TReserva.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/com/parking/app/dao/IReservaDAO.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/parking/app/entity/TPlaya.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/parking/app/controller/AWSRekognitionController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/parking/app/dao/ITarifaDAO.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/com/parking/app/dao/ITarifaDAO.xml" />
       </list>
     </option>
   </component>
@@ -217,6 +182,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -227,14 +194,66 @@
             <path>
               <item name="wsParking" type="b2602c69:ProjectViewProjectNode" />
               <item name="wsParking" type="462c0819:PsiDirectoryNode" />
-              <item name="images" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wsParking" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wsParking" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wsParking" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wsParking" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wsParking" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wsParking" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wsParking" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wsParking" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="dao" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wsParking" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wsParking" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="entity" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wsParking" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wsParking" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wsParking" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wsParking" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="dao" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -245,24 +264,25 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/images" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/com/parking/app/dao" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/firmas" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.parking.app.entity" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/com/parking/app/dao" />
       <recent name="$PROJECT_DIR$/images" />
       <recent name="C:\Users\LENOVO\Documents\NetBeansProjects\WsParking" />
       <recent name="C:\Users\LENOVO\Documents\NetBeansProjects\WsParking\src\main\resources\com\parking\app\dao" />
       <recent name="C:\Users\LENOVO\Documents\NetBeansProjects\WsParking\images" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.parking.app.entity" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/firmas" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -454,18 +474,19 @@
       <workItem from="1557542762752" duration="837000" />
       <workItem from="1557543651880" duration="2334000" />
       <workItem from="1557605171521" duration="2459000" />
-      <workItem from="1558057416952" duration="7468000" />
+      <workItem from="1558057416952" duration="7698000" />
+      <workItem from="1558142350964" duration="6436000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="80810000" />
+    <option name="totallyTimeSpent" value="87476000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1366" height="741" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25833333" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2621212" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -477,12 +498,12 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3289689" />
       <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3802817" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3633388" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3630673" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Spring" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.35367763" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.35332254" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="10" weight="0.32755905" />
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.3289689" />
@@ -500,7 +521,7 @@
       <window_info anchor="right" id="Palette&#9;" order="8" />
       <window_info anchor="right" id="Theme Preview" order="9" />
       <window_info anchor="right" id="Bean Validation" order="10" weight="0.32978722" />
-      <window_info anchor="right" id="Maven" order="11" weight="0.32978722" />
+      <window_info anchor="right" id="Maven" order="11" weight="0.32954547" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -528,46 +549,10 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/parking/app/controller/TarifaController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="33" selection-start-line="33" selection-end-line="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/parking/app/controller/PlayaController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="87">
-          <caret line="55" lean-forward="true" selection-start-line="55" selection-end-line="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/parking/app/dao/ICrudRepository.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/parking/app/dao/IVehiculoDAO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="87">
           <caret line="20" column="29" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/parking/app/dao/IPlayaDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="31" column="10" selection-start-line="31" selection-start-column="10" selection-end-line="31" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/com/parking/app/dao/IReservaDAO.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="6" selection-start-line="6" selection-end-line="19" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/parking/app/dao/IReservaDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="38" column="13" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -624,20 +609,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/parking/app/entity/TReserva.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="28" column="18" selection-start-line="28" selection-start-column="12" selection-end-line="28" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/parking/app/entity/TPlaya.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="17" selection-start-line="17" selection-end-line="17" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/parking/app/util/FileUtil.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="117">
@@ -663,13 +634,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="467">
           <caret line="47" column="1" lean-forward="true" selection-start-line="47" selection-start-column="1" selection-end-line="47" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/parking/app/dao/ITarifaDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="407">
-          <caret line="34" column="93" lean-forward="true" selection-start-line="22" selection-start-column="3" selection-end-line="34" selection-end-column="93" />
         </state>
       </provider>
     </entry>
@@ -748,13 +712,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/parking/app/controller/AWSRekognitionController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1789">
-          <caret line="184" column="58" lean-forward="true" selection-start-line="184" selection-start-column="58" selection-end-line="184" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -779,27 +736,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/parking/app/controller/ReservaController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-91">
-          <caret line="111" column="47" selection-start-line="111" selection-start-column="47" selection-end-line="111" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/com/parking/app/dao/IVehiculoDAO.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="10" column="50" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/parking/app/dao/IAutorizacionDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="16">
-          <caret line="15" column="33" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -812,7 +752,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/parking/app/entity/TAutorizacion.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="370">
+        <state relative-caret-position="495">
           <caret line="36" column="44" selection-start-line="36" selection-start-column="44" selection-end-line="36" selection-end-column="44" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -820,20 +760,107 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/parking/app/controller/AutorizacionController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parking/app/dao/IAutorizacionDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="89" column="33" lean-forward="true" selection-start-line="89" selection-start-column="33" selection-end-line="89" selection-end-column="33" />
+        <state relative-caret-position="135">
+          <caret line="15" column="33" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parking/app/controller/ReservaController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1230">
+          <caret line="111" column="47" selection-start-line="111" selection-start-column="47" selection-end-line="111" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/com/parking/app/dao/IAutorizacionDAO.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="19" column="67" lean-forward="true" selection-start-line="19" selection-start-column="67" selection-end-line="19" selection-end-column="67" />
+        <state relative-caret-position="285">
+          <caret line="19" column="67" selection-start-line="19" selection-start-column="67" selection-end-line="19" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parking/app/entity/TReserva.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="74">
+          <caret line="21" column="22" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parking/app/dao/IReservaDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/com/parking/app/dao/IReservaDAO.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parking/app/dao/IPlayaDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="35" column="41" selection-start-line="35" selection-start-column="30" selection-end-line="35" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parking/app/entity/TPlaya.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="31" column="27" selection-start-line="31" selection-start-column="27" selection-end-line="31" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parking/app/entity/TTarifa.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="22" column="31" selection-start-line="22" selection-start-column="31" selection-end-line="22" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parking/app/controller/AutorizacionController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="89" column="33" selection-start-line="89" selection-start-column="33" selection-end-line="89" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parking/app/controller/AWSRekognitionController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="140" column="50" selection-start-line="140" selection-start-column="39" selection-end-line="140" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parking/app/dao/ITarifaDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="36" column="23" selection-start-line="36" selection-start-column="12" selection-end-line="36" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/com/parking/app/dao/ITarifaDAO.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="48" selection-start-line="7" selection-start-column="48" selection-end-line="7" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parking/app/controller/PlayaController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="51" column="47" selection-start-line="51" selection-start-column="47" selection-end-line="51" selection-end-column="47" />
         </state>
       </provider>
     </entry>
