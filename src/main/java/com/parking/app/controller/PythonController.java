@@ -9,26 +9,17 @@ import com.parking.app.dao.IParkingDAO;
 import com.parking.app.util.DateUtil;
 import com.parking.app.util.MathUtil;
 import com.parking.app.util.StrUtil;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Calendar;
 import java.util.Map;
-
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.ResourceLoader;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author Osmar Velezmoro <SIS-SINTAD>
@@ -102,12 +93,13 @@ public class PythonController {
         byte[] buffer = new byte[stream.available()];
         stream.read(buffer);
         String str = new String(buffer).replaceAll("\\r\\n", "").replace("[", "").replace("]", "");
+        System.out.println(str);
         if (error) {
             throw new RuntimeException(str);
         }
 
         map.put("probabilidad_python", MathUtil.getDouble(str));
-
+        System.out.println(map);
         return map;
     }
 

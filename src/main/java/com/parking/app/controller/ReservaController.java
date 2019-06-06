@@ -8,29 +8,20 @@ package com.parking.app.controller;
 import com.parking.app.dao.*;
 import com.parking.app.dto.CancelReservaResponseDTO;
 import com.parking.app.dto.TReservaDTO;
-import com.parking.app.entity.TPlaya;
+import com.parking.app.entity.TParametro;
 import com.parking.app.entity.TReserva;
 import com.parking.app.entity.TUsuario;
 import com.parking.app.service.IEmailService;
+import com.parking.app.util.DateUtil;
+import com.parking.app.util.MathUtil;
 import com.parking.app.util.StrUtil;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
-
-import java.util.List;
-
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 /**
  * @author Osmar Velezmoro <SIS-SINTAD>
@@ -55,16 +46,19 @@ public class ReservaController {
     @Autowired
     IVehiculoDAO iVehiculoDAO;
 
+    @Autowired
+    IParametroDAO iParametroDAO;
+
     @CrossOrigin(origins = {"http://localhost:8100", "file://", "*"})
     @RequestMapping(method = {RequestMethod.OPTIONS, RequestMethod.POST}, value = "saveReserva", produces = "application/json", consumes = "application/json")
     @ResponseBody
     public TReserva saveReserva(@RequestBody(required = false) TReservaDTO reserva) {
 
-        TReserva tReserva = new TReserva();
 
         TReserva lastReserva = iReservaDAO.last();
         Integer incremental = lastReserva.getId() + 1;
 
+        TReserva tReserva = new TReserva();
         tReserva.setFechaReserva(reserva.getFechaReserva());
         tReserva.setIdPlaya(reserva.getIdPlaya());
         tReserva.setIdUsuario(reserva.getIdUsuario());
@@ -74,7 +68,7 @@ public class ReservaController {
         iReservaDAO.save(tReserva);
 
         Thread thread = new Thread(() -> {
-            iEmailService.sendMail(new String[]{"ovelezmoro@gmail.com"}, "NUEVA RESERVA: " + tReserva.getShaReserva(), "RESERVA REGISTRADA PARA EL " + StrUtil.getDate(tReserva.getFechaReserva(), "dd/MM/yyyy") + " A LAS " + StrUtil.getDate(tReserva.getFechaReserva(), "hh:mm"));
+            iEmailService.sendMail(new String[]{"alexander.ocampo@avantica.net"}, "NUEVA RESERVA: " + tReserva.getShaReserva(), "RESERVA REGISTRADA PARA EL " + StrUtil.getDate(tReserva.getFechaReserva(), "dd/MM/yyyy") + " A LAS " + StrUtil.getDate(tReserva.getFechaReserva(), "hh:mm"));
         });
         thread.start();
 
@@ -82,21 +76,34 @@ public class ReservaController {
 
     }
 
-    @CrossOrigin(origins = {"http://localhost:8100", "file://"})
+    @CrossOrigin(origins = {"http://localhost:8100", "file://", "*"})
     @RequestMapping(method = {RequestMethod.OPTIONS, RequestMethod.PUT}, value = "updateReserva/{idreserva}", produces = "application/json", consumes = "application/json")
     @ResponseBody
     public TReserva updateReserva(@PathVariable(name = "idreserva") Integer idreserva,
                                   @RequestBody(required = false) TReservaDTO reserva) {
 
-        TReserva tReserva = iReservaDAO.findOne(idreserva);
-        tReserva.setFechaReserva(reserva.getFechaReserva());
-        tReserva.setIdVehiculo(reserva.getIdVehiculo());
+        Calendar calFechaInicial = Calendar.getInstance();
+        Calendar calFechaFinal = Calendar.getInstance();
 
-        iReservaDAO.update(tReserva);
-        Thread thread = new Thread(() -> {
-            iEmailService.sendMail(new String[]{"ovelezmoro@gmail.com"}, "ACTUALIZACION DE RESERVA: " + tReserva.getShaReserva(), "RESERVA REGISTRADA PARA EL " + StrUtil.getDate(tReserva.getFechaReserva(), "dd/MM/yyyy") + " A LAS " + StrUtil.getDate(tReserva.getFechaReserva(), "hh:mm"));
-        });
-        thread.start();
+        TParametro parametro = iParametroDAO.find("001");
+        TReserva tReserva = iReservaDAO.findOne(idreserva);
+
+        calFechaInicial.setTime(tReserva.getFechaRegistro());
+        calFechaFinal.setTime(new Date());
+
+        long totalMinutos = 0;
+        totalMinutos = ((calFechaFinal.getTimeInMillis() - calFechaInicial.getTimeInMillis()) / 1000 / 60);
+
+
+        if (totalMinutos <= MathUtil.getInt(parametro.getValor())) {
+            tReserva.setFechaReserva(reserva.getFechaReserva());
+            tReserva.setIdVehiculo(reserva.getIdVehiculo());
+            iReservaDAO.update(tReserva);
+            iEmailService.sendMail(new String[]{"alexander.ocampo@avantica.net"}, "ACTUALIZACION DE RESERVA: " + tReserva.getShaReserva(), "RESERVA REGISTRADA PARA EL " + StrUtil.getDate(tReserva.getFechaReserva(), "dd/MM/yyyy") + " A LAS " + StrUtil.getDate(tReserva.getFechaReserva(), "hh:mm"));
+        } else {
+            tReserva = null;
+        }
+
         return tReserva;
 
 

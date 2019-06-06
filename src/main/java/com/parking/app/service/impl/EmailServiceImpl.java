@@ -31,12 +31,14 @@ public class EmailServiceImpl implements IEmailService {
 
     @Override
     public void sendMail(String[] to, String subject, String text) {
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom(from);
-        message.setTo(to);
-        message.setSubject(subject);
-        message.setText(text);
-        sender.send(message);
+        new Thread(() -> {
+            SimpleMailMessage message = new SimpleMailMessage();
+            message.setFrom(from);
+            message.setTo(to);
+            message.setSubject(subject);
+            message.setText(text);
+            sender.send(message);
+        });
     }
     
 }

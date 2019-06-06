@@ -29,5 +29,6 @@ public class TReserva {
     private TPlaya playa;
     private Date fechaIngreso;
     private Date fechaSalida;
+    private Date fechaRegistro;
 
 }

@@ -23,14 +23,60 @@ import org.springframework.stereotype.Service;
 @Service
 public class INotificationServiceImpl implements INotificationService {
 
-    public static final String REST_API_KEY = "YWMyZThiY2EtMjQxZi00NDI3LWI5MjktZTVjZTNmZmI5NmEz";
-    public static final String APP_ID = "a8bfffde-6941-4d3c-a34b-f79015b49b07";
+    public static final String REST_API_KEY = "N2RjNjJmNTQtNTZhMC00NGU5LTgxODktNmRmZDJhYTE1NGVj";
+    public static final String APP_ID = "664e6d31-e58f-4bac-b392-666e4901cfa0";
     public static final String LEN = "en";
     public static final String URL = "https://onesignal.com/api/v1/notifications";
 
     @Override
     public void sendMessageToAllUsers(String title, String message) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            String jsonResponse;
+
+            URL url = new URL("https://onesignal.com/api/v1/notifications");
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setUseCaches(false);
+            con.setDoOutput(true);
+            con.setDoInput(true);
+
+            con.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+            con.setRequestProperty("Authorization", "Basic N2RjNjJmNTQtNTZhMC00NGU5LTgxODktNmRmZDJhYTE1NGVj");
+            con.setRequestMethod("POST");
+
+            String strJsonBody = "{"
+                    + "\"app_id\": \"664e6d31-e58f-4bac-b392-666e4901cfa0\","
+                    + "\"included_segments\": [\"All\"],"
+                    + "\"headings\": {\"en\": \"" + title + "\"},"
+                    + "\"contents\": {\"en\": \"" + message + "\"}"
+                    + "}";
+
+            System.out.println("strJsonBody:\n" + strJsonBody);
+
+            byte[] sendBytes = strJsonBody.getBytes("UTF-8");
+            con.setFixedLengthStreamingMode(sendBytes.length);
+
+            OutputStream outputStream = con.getOutputStream();
+            outputStream.write(sendBytes);
+
+            int httpResponse = con.getResponseCode();
+            System.out.println("httpResponse: " + httpResponse);
+
+            if (httpResponse >= HttpURLConnection.HTTP_OK
+                    && httpResponse < HttpURLConnection.HTTP_BAD_REQUEST) {
+                Scanner scanner = new Scanner(con.getInputStream(), "UTF-8");
+                jsonResponse = scanner.useDelimiter("\\A").hasNext() ? scanner.next() : "";
+                scanner.close();
+            } else {
+                Scanner scanner = new Scanner(con.getErrorStream(), "UTF-8");
+                jsonResponse = scanner.useDelimiter("\\A").hasNext() ? scanner.next() : "";
+                scanner.close();
+            }
+            System.out.println("jsonResponse:\n" + jsonResponse);
+
+        } catch (Throwable t) {
+            t.printStackTrace();
+        }
+
     }
 
     @Override

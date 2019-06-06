@@ -32,6 +32,15 @@
         SELECT * FROM t_reserva ORDER BY id DESC LIMIT 1
     </select>
 
+    <select id="findOne" resultType="TReserva">
+        SELECT * FROM t_reserva WHERE id = #{id}
+    </select>
+
+    <update id="update" parameterType="TReserva">
+        UPDATE t_reserva SET fecha_reserva=#{fechaReserva}, id_vehiculo = #{idVehiculo} WHERE id=#{id}
+    </update>
+
+
     <insert id="save" parameterType="TReserva">
         INSERT INTO `t_reserva` (`id_usuario`, `id_playa`, `fecha_reserva`, `precio_reserva`, `sha_reserva`, `id_vehiculo`)
         VALUES (#{idUsuario}, #{idPlaya}, #{fechaReserva}, #{precioReserva}, #{shaReserva}, #{idVehiculo})

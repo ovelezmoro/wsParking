@@ -8,5 +8,8 @@
         SELECT * FROM t_tarifa WHERE id_playa = #{id_playa} LIMIT 1
     </select>
 
+    <update id="updateByIdPlaya">
+        UPDATE t_tarifa SET nueva_tarifa = #{tarifa}, fregistro = NOW() WHERE id=#{id_playa}
+    </update>
 
 </mapper>
