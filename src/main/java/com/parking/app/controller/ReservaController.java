@@ -54,6 +54,7 @@ public class ReservaController {
     @ResponseBody
     public TReserva saveReserva(@RequestBody(required = false) TReservaDTO reserva) {
 
+        TUsuario usuario = iUsuarioDAO.findOne(reserva.getIdUsuario());
 
         TReserva lastReserva = iReservaDAO.last();
         Integer incremental = lastReserva.getId() + 1;
@@ -68,7 +69,7 @@ public class ReservaController {
         iReservaDAO.save(tReserva);
 
         Thread thread = new Thread(() -> {
-            iEmailService.sendMail(new String[]{"alexander.ocampo@avantica.net"}, "NUEVA RESERVA: " + tReserva.getShaReserva(), "RESERVA REGISTRADA PARA EL " + StrUtil.getDate(tReserva.getFechaReserva(), "dd/MM/yyyy") + " A LAS " + StrUtil.getDate(tReserva.getFechaReserva(), "hh:mm"));
+            iEmailService.sendMail(new String[]{usuario.getEmail()}, "NUEVA RESERVA: " + tReserva.getShaReserva(), "RESERVA REGISTRADA PARA EL " + StrUtil.getDate(tReserva.getFechaReserva(), "dd/MM/yyyy") + " A LAS " + StrUtil.getDate(tReserva.getFechaReserva(), "hh:mm"));
         });
         thread.start();
 
@@ -88,6 +89,8 @@ public class ReservaController {
         TParametro parametro = iParametroDAO.find("001");
         TReserva tReserva = iReservaDAO.findOne(idreserva);
 
+        TUsuario usuario = iUsuarioDAO.findOne(tReserva.getIdUsuario());
+
         calFechaInicial.setTime(tReserva.getFechaRegistro());
         calFechaFinal.setTime(new Date());
 
@@ -99,7 +102,7 @@ public class ReservaController {
             tReserva.setFechaReserva(reserva.getFechaReserva());
             tReserva.setIdVehiculo(reserva.getIdVehiculo());
             iReservaDAO.update(tReserva);
-            iEmailService.sendMail(new String[]{"alexander.ocampo@avantica.net"}, "ACTUALIZACION DE RESERVA: " + tReserva.getShaReserva(), "RESERVA REGISTRADA PARA EL " + StrUtil.getDate(tReserva.getFechaReserva(), "dd/MM/yyyy") + " A LAS " + StrUtil.getDate(tReserva.getFechaReserva(), "hh:mm"));
+            iEmailService.sendMail(new String[]{usuario.getEmail()}, "ACTUALIZACION DE RESERVA: " + tReserva.getShaReserva(), "RESERVA REGISTRADA PARA EL " + StrUtil.getDate(tReserva.getFechaReserva(), "dd/MM/yyyy") + " A LAS " + StrUtil.getDate(tReserva.getFechaReserva(), "hh:mm"));
         } else {
             tReserva = null;
         }
@@ -130,15 +133,36 @@ public class ReservaController {
     @ResponseBody
     public CancelReservaResponseDTO cancelarReserva(@RequestParam(value = "idreserva", required = true) Integer idreserva) {
 
+        Calendar calFechaInicial = Calendar.getInstance();
+        Calendar calFechaFinal = Calendar.getInstance();
+
+        TParametro parametro = iParametroDAO.find("002");
+        TReserva tReserva = iReservaDAO.findOne(idreserva);
+
+        calFechaInicial.setTime(tReserva.getFechaRegistro());
+        calFechaFinal.setTime(new Date());
+
+        long totalMinutos = 0;
+        totalMinutos = ((calFechaFinal.getTimeInMillis() - calFechaInicial.getTimeInMillis()) / 1000 / 60);
+
         CancelReservaResponseDTO message = new CancelReservaResponseDTO();
         message.setSuccess(0);
         message.setStatus_message("No se pudo realizar cancelacion");
-        try {
-            iReservaDAO.cancel(idreserva);
-            message.setSuccess(1);
-            message.setStatus_message("Cancelacion exitosa");
-        } catch (Exception e) {
-            log.error(e.getMessage(), e);
+
+        if (totalMinutos <= MathUtil.getInt(parametro.getValor())) {
+            try {
+                iReservaDAO.cancel(idreserva);
+                message.setSuccess(1);
+                message.setStatus_message("Cancelacion exitosa");
+
+                TUsuario usuario = iUsuarioDAO.findOne(tReserva.getIdUsuario());
+                iEmailService.sendMail(new String[]{usuario.getEmail()}, "CANCELACION DE RESERVA: " + tReserva.getShaReserva(), "SU RESERVA RESERVA REGISTRADA EL " + StrUtil.getDate(tReserva.getFechaReserva(), "dd/MM/yyyy") + " A LAS " + StrUtil.getDate(tReserva.getFechaReserva(), "hh:mm") + " A SIDO CANCELADA");
+
+            } catch (Exception e) {
+                log.error(e.getMessage(), e);
+            }
+        } else {
+            message.setStatus_message("Cancelacion fuera de plazo");
         }
 
         return message;

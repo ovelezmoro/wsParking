@@ -3,6 +3,7 @@ package com.parking.app.util;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -203,4 +204,19 @@ public class StrUtil {
         }
         return word;
     }
+    
+    public static String reemplazarCaracteresEspeciales(String palabra) {
+        String[] caracteresMalos = {" ","ñ","|","à","á","À","Á","è","é","È","É","ì","í","Ì","Í","ò","ó","Ò","Ó","ù","ú","Ù","Ú","\b","/",":","<","*","?",">","."};
+        String[] caracteresBuenos = {"_","n","_","a","a","A","A","e","e","E","E","i","i","I","I","o","o","O","O","u","u","U","U","_","_","_","_","","_","_", "",""};
+
+        for (String letraMala : caracteresMalos) {
+            if(palabra.contains(letraMala)){
+                palabra = palabra.replace(letraMala,caracteresBuenos[Arrays.asList(caracteresMalos).indexOf(letraMala)]);
+            }
+        }
+
+        return palabra;
+
+    }
+    
 }

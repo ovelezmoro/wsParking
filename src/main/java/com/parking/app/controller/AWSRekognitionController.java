@@ -15,6 +15,7 @@ import com.parking.app.entity.TPlaya;
 import com.parking.app.entity.TReserva;
 import com.parking.app.entity.TVehiculo;
 import com.parking.app.util.MathUtil;
+import com.parking.app.util.StrUtil;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.binary.Base64;
@@ -83,19 +84,21 @@ public class AWSRekognitionController {
 
             TextDetection detection = detectTextRequest(decoded);
 
-            TVehiculo nVehiculo = iVehiculoDAO.findByPlaca(detection.getDetectedText());
-            if (nVehiculo == null) {
+            String placa = StrUtil.reemplazarCaracteresEspeciales(detection.getDetectedText());
+
+            TVehiculo nVehiculo = iVehiculoDAO.findByPlaca(placa);
+            if (nVehiculo == null && placa.length() == 7) {
                 Integer idUsuario = MathUtil.getInt(photo.get("usuario"));
                 nVehiculo = new TVehiculo();
-                nVehiculo.setPlaca(detection.getDetectedText());
+                nVehiculo.setPlaca(placa);
                 nVehiculo.setIdUsuario(idUsuario);
                 iVehiculoDAO.save(nVehiculo);
                 response.put("status", "OK");
-                response.put("message", "Placa " + detection.getDetectedText() + " registrada exitosamente");
-                response.put("placa", detection.getDetectedText());
+                response.put("message", "Placa " + placa + " registrada exitosamente");
+                response.put("placa", placa);
             } else {
                 response.put("status", "error");
-                response.put("message", "Placa " + detection.getDetectedText() + " ya se encuentra registrada");
+                response.put("message", "Placa " + placa + " ya se encuentra registrada");
             }
         }
         return response;
@@ -113,7 +116,10 @@ public class AWSRekognitionController {
 
         TextDetection detection = detectTextRequest(decoded);
 
-        TReserva reserva = iReservaDAO.findLastTicket(photo.get("usuario"), detection.getDetectedText());
+        String placa = StrUtil.reemplazarCaracteresEspeciales(detection.getDetectedText());
+
+
+        TReserva reserva = iReservaDAO.findLastTicket(photo.get("usuario"), placa);
 
         if (reserva != null) {
             reserva.setUsuario(iUsuarioDAO.findOne(reserva.getIdUsuario()));
@@ -150,8 +156,9 @@ public class AWSRekognitionController {
         if (isVehicle) {
             TextDetection detection = detectTextRequest(decoded);
             response.put("status", "OK");
-            response.put("message", "Placa " + detection.getDetectedText() + " encontrada exitosamente");
-            response.put("placa", detection.getDetectedText());
+            String placa = detection.getDetectedText();
+            response.put("message", "Placa " + placa + " encontrada exitosamente");
+            response.put("placa", placa);
         }
         return response;
     }

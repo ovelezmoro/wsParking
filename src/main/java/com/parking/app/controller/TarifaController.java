@@ -6,15 +6,21 @@
 package com.parking.app.controller;
 
 import com.parking.app.dao.IParkingDAO;
+import com.parking.app.dao.IPlayaDAO;
 import com.parking.app.dao.ITarifaDAO;
 import com.parking.app.dto.TTarifaDTO;
+import com.parking.app.entity.TPlaya;
+import com.parking.app.entity.TTarifa;
+import com.parking.app.service.IEmailService;
 import com.parking.app.service.impl.INotificationServiceImpl;
+import com.parking.app.util.StrUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,21 +40,39 @@ public class TarifaController {
     @Autowired
     ITarifaDAO iTarifaDAO;
 
-    
+    @Autowired
+    IEmailService iEmailService;
+
+    @Autowired
+    IPlayaDAO iPlayaDAO;
+
     @Autowired
     INotificationServiceImpl iNotificationServiceImpl;
+
+    @Value("${spring.mail.properties.mail.administrador}")
+    private String administrador;
     
     @CrossOrigin(origins = {"http://localhost:8100", "file://", "*"})
     @RequestMapping(method = {RequestMethod.OPTIONS, RequestMethod.POST}, value = "updateTarifaPorProbabilidad", produces = "application/json", consumes = "application/json")
     @ResponseBody
     public TTarifaDTO updateTarifaPorProbabilidad(@RequestBody(required = false) TTarifaDTO nueva_tarifa) {
 
-        iTarifaDAO.updateByIdPlaya(nueva_tarifa.getIdplaya(), nueva_tarifa.getTarifa());
+        TPlaya playa = iPlayaDAO.findOne(nueva_tarifa.getIdplaya());
 
-        //iParkingDAO.updateTarifa(nueva_tarifa.getIdplaya(), nueva_tarifa.getTarifa());
-        //aca pon el titulo y el mensaje que desee
-        iNotificationServiceImpl.sendMessageToAllUsers("Nueva Tarifa", "HAy una nueva promocion para la playa 1");
-        
+        if(playa != null){
+            iTarifaDAO.updateByIdPlaya(nueva_tarifa.getIdplaya(), nueva_tarifa.getTarifa());
+
+            String mensaje = "Hay una nueva promocion para la Playa " + playa.getNombre();
+            String title = "Nueva Tarifa";
+
+            iNotificationServiceImpl.sendMessageToAllUsers(title, mensaje);
+
+            Thread thread = new Thread(() -> {
+                iEmailService.sendMail(new String[]{administrador}, title, mensaje);
+            });
+            thread.start();
+        }
+
         return nueva_tarifa;
         
 
