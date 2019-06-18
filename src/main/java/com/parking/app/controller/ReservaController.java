@@ -57,7 +57,10 @@ public class ReservaController {
         TUsuario usuario = iUsuarioDAO.findOne(reserva.getIdUsuario());
 
         TReserva lastReserva = iReservaDAO.last();
-        Integer incremental = lastReserva.getId() + 1;
+        Integer incremental = 1;
+        if (lastReserva != null) {
+            incremental = lastReserva.getId() + 1;
+        }
 
         TReserva tReserva = new TReserva();
         tReserva.setFechaReserva(reserva.getFechaReserva());
