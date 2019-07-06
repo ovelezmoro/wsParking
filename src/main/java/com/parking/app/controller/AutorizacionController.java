@@ -36,7 +36,10 @@ public class AutorizacionController {
         byte[] decoded = Base64.decodeBase64(photo);
 
         String time = StrUtil.getString(new Date().getTime());
-
+        File folder = new File("firmas");
+        if(!folder.exists()){
+            folder.mkdir();
+        }
         try (BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(new FileOutputStream("firmas/" + time + ".png"))) {
             bufferedOutputStream.write(decoded);
             map.put("image", time + ".png");

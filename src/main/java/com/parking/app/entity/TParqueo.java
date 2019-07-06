@@ -23,7 +23,7 @@ public class TParqueo {
     private Date fecha;
     private String entrada;
     private String zona;
-    private String observaciones;
+    private String observacion;
     private String image;
     private Integer idUsuario;
 
@@ -35,7 +35,7 @@ public class TParqueo {
         this.fecha = parqueoDTO.getFecha();
         this.entrada = parqueoDTO.getEntrada();
         this.zona = parqueoDTO.getZona();
-        this.observaciones = parqueoDTO.getObservaciones();
+        this.observacion = parqueoDTO.getObservaciones();
         this.image = parqueoDTO.getImage();
         this.idUsuario = parqueoDTO.getIdUsuario();
     }

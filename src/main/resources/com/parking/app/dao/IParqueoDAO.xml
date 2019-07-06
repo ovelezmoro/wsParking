@@ -9,7 +9,7 @@
     </insert>
 
     <select id="findByPlaca" resultType="TParqueo" parameterType="String">
-      SELECT * FROM t_parqueo WHERE placa = #{placa} ORDER BY fecha, entrada DESC LIMIT 1
+      SELECT * FROM t_parqueo WHERE placa = #{placa} ORDER BY ID DESC LIMIT 1
     </select>
 
 </mapper>
