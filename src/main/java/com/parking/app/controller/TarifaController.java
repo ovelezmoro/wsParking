@@ -78,7 +78,7 @@ public class TarifaController {
 
     }
 
-    @CrossOrigin(origins = {"http://localhost:8100", "file://"})
+    @CrossOrigin(origins = {"http://localhost:8100", "file://", "*"})
     @RequestMapping(method = {RequestMethod.GET}, value = "getTarifas")
     @ApiOperation(value = "getTarifas", nickname = "Obtener Tarifa", response = List.class)
     @ApiResponses(value = {
