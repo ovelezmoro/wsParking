@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.parking.app.dao.IParqueoDAO">
+
+    <insert id="save" parameterType="TParqueo">
+        INSERT INTO t_parqueo VALUES (NULL, #{placa}, #{marca}, #{color}, #{modelo}, #{fecha}, #{entrada}, #{zona}, #{observaciones}, #{image}, #{idUsuario})
+    </insert>
+
+    <select id="findByPlaca" resultType="TParqueo" parameterType="String">
+      SELECT * FROM t_parqueo WHERE placa = #{placa} ORDER BY ID DESC LIMIT 1
+    </select>
+
+</mapper>

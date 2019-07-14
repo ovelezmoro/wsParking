@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.parking.app.dao.ITarifaDAO">
+
+    <select id="findByPlaya" resultType="TTarifa">
+        SELECT * FROM t_tarifa WHERE id_playa = #{id_playa} LIMIT 1
+    </select>
+
+    <update id="updateByIdPlaya">
+        UPDATE t_tarifa SET nueva_tarifa = #{tarifa}, fregistro = NOW() WHERE id=#{id_playa}
+    </update>
+
+</mapper>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.parking.app.dao.IReservaDAO">
+
+    <resultMap id="ReservaMap" type="TReserva">
+        <id property="idUsuario" column="id_usuario"></id>
+        <id property="idVehiculo" column="id_vehiculo"></id>
+        <id property="idPlaya" column="id_playa"></id>
+        <association property="usuario" column="id_usuario" columnPrefix="id"
+                     javaType="TUsuario" select="com.parking.app.dao.IUsuarioDAO.findOne">
+        </association>
+        <association property="vehiculo" column="id_vehiculo" columnPrefix="id"
+                     javaType="TVehiculo" select="com.parking.app.dao.IVehiculoDAO.findOne">
+        </association>
+        <association property="playa" column="id_playa" columnPrefix="id"
+                     javaType="TPlaya" select="com.parking.app.dao.IPlayaDAO.findOne">
+        </association>
+    </resultMap>
+
+    <select id="findLastTicket" resultType="TReserva">
+        SELECT * FROM t_reserva
+        WHERE id_usuario = #{id_usuario}
+        AND id_vehiculo = (SELECT id_vehiculo from t_vehiculo where placa = #{placa})
+        AND estado = 'I'
+        ORDER BY fecha_reserva DESC
+        LIMIT 1
+    </select>
+
+    <select id="last" resultType="TReserva">
+        SELECT * FROM t_reserva ORDER BY id DESC LIMIT 1
+    </select>
+
+    <select id="findOne" resultType="TReserva">
+        SELECT * FROM t_reserva WHERE id = #{id}
+    </select>
+
+    <update id="update" parameterType="TReserva">
+        UPDATE t_reserva SET fecha_reserva=#{fechaReserva}, id_vehiculo = #{idVehiculo} WHERE id=#{id}
+    </update>
+
+
+    <insert id="save" parameterType="TReserva">
+        INSERT INTO `t_reserva` (`id_usuario`, `id_playa`, `fecha_reserva`, `precio_reserva`, `sha_reserva`, `id_vehiculo`)
+        VALUES (#{idUsuario}, #{idPlaya}, #{fechaReserva}, #{precioReserva}, #{shaReserva}, #{idVehiculo})
+    </insert>
+
+    <select id="findByIdUsuario" resultType="TReserva">
+        SELECT * FROM t_reserva t1 WHERE t1.id_usuario = #{id_usuario} ORDER BY id DESC LIMIT 10
+    </select>
+
+    <update id="cancel">
+        UPDATE t_reserva SET estado='C' WHERE id = #{id}
+    </update>
+
+</mapper>
