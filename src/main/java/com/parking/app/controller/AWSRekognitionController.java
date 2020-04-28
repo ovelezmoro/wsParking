@@ -28,6 +28,8 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import static com.parking.app.util.Util.CREDENTIALS;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author Administrador
@@ -66,7 +68,7 @@ public class AWSRekognitionController {
 
         Map<String, Object> response = new HashMap<>();
         response.put("status", "error");
-        response.put("message", "No se detecto una placa valida");
+        response.put("message", "No se detecto una placa válida");
         response.put("placa", "");
 
         String image = photo.get("photo").replace("data:image/jpeg;base64,", "");
@@ -118,7 +120,6 @@ public class AWSRekognitionController {
 
         String placa = StrUtil.reemplazarCaracteresEspeciales(detection.getDetectedText());
 
-
         TReserva reserva = iReservaDAO.findLastTicket(photo.get("usuario"), placa);
 
         if (reserva != null) {
@@ -133,7 +134,6 @@ public class AWSRekognitionController {
         }
 
         return null;
-
 
     }
 
@@ -150,19 +150,49 @@ public class AWSRekognitionController {
         byte[] decoded = Base64.decodeBase64(image);
         for (Label label : detectLabelsRequest(decoded)) {
             if (label.getName().equals("Vehicle") && label.getConfidence() > 80) {
+                log.info("LABEL ==>" + label.toString());
                 isVehicle = true;
             }
         }
-        if (isVehicle) {
-            TextDetection detection = detectTextRequest(decoded);
-            response.put("status", "OK");
-            String placa = detection.getDetectedText();
-            response.put("message", "Placa " + placa + " encontrada exitosamente");
-            response.put("placa", placa);
+        
+        List<TextDetection> detections = detectTextRequestList(decoded);
+        
+        for (TextDetection detection : detections) {
+            String texto = detection.getDetectedText().toUpperCase();
+            Pattern pattern = Pattern.compile("^[a-zA-Z0-9]{3}-[a-zA-Z0-9]{3}");
+            log.info("TEXTO => " + texto);
+            Matcher matcher = pattern.matcher(texto);
+            while(matcher.find()) {
+                String placa = matcher.group(0);
+                response.put("status", "OK");
+                response.put("message", "Placa " + placa + " encontrada exitosamente");
+                response.put("placa", placa);
+                log.info("PLACA => " + placa);
+            }
+            
         }
+        
+//        if (isVehicle) {
+//            TextDetection detection = detectTextRequest(decoded);
+//            log.info("PLACA => " + detection.getDetectedText());
+//
+//            String mydata = detection.getDetectedText();
+//            Pattern pattern = Pattern.compile("^[a-zA-Z0-9]{3}-[a-zA-Z0-9]{3}");
+//            Matcher matcher = pattern.matcher(mydata);
+//            if (matcher.find()) {
+//                response.put("status", "OK");
+//                //String placa = detection.getDetectedText();
+//                String placa = matcher.group(0);
+//                if (matcher.groupCount() > 0) {
+//                    placa = matcher.group(1);
+//                }
+//                response.put("message", "Placa " + placa + " encontrada exitosamente");
+//                response.put("placa", placa);
+//                System.out.println(matcher.group(1));
+//            }
+//        }
         return response;
     }
-
 
     private List<Label> detectLabelsRequest(byte[] image) {
         DetectLabelsRequest requestLabel = new DetectLabelsRequest()
@@ -174,6 +204,19 @@ public class AWSRekognitionController {
         return result.getLabels();
     }
 
+    
+    private List<TextDetection> detectTextRequestList(byte[] image) {
+
+        DetectTextRequest requestText = new DetectTextRequest()
+                .withImage(new Image()
+                        .withBytes(ByteBuffer.wrap(image)));
+
+        DetectTextResult resultText = rekognitionClient.detectText(requestText);
+
+        return resultText.getTextDetections();
+
+    }
+    
     private TextDetection detectTextRequest(byte[] image) {
 
         DetectTextRequest requestText = new DetectTextRequest()

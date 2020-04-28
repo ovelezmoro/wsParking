@@ -71,11 +71,8 @@ public class ReservaController {
         tReserva.setShaReserva("RES-COD-" + incremental);
         iReservaDAO.save(tReserva);
 
-        Thread thread = new Thread(() -> {
-            iEmailService.sendMail(new String[]{usuario.getEmail()}, "NUEVA RESERVA: " + tReserva.getShaReserva(), "RESERVA REGISTRADA PARA EL " + StrUtil.getDate(tReserva.getFechaReserva(), "dd/MM/yyyy") + " A LAS " + StrUtil.getDate(tReserva.getFechaReserva(), "hh:mm"));
-        });
-        thread.start();
-
+        iEmailService.sendMail(new String[]{usuario.getEmail()}, "NUEVA RESERVA: " + tReserva.getShaReserva(), "RESERVA REGISTRADA PARA EL " + StrUtil.getDate(tReserva.getFechaReserva(), "dd/MM/yyyy") + " A LAS " + StrUtil.getDate(tReserva.getFechaReserva(), "hh:mm"));
+        
         return tReserva;
 
     }
@@ -150,22 +147,23 @@ public class ReservaController {
 
         CancelReservaResponseDTO message = new CancelReservaResponseDTO();
         message.setSuccess(0);
-        message.setStatus_message("No se pudo realizar cancelacion");
+        message.setStatus_message("No se ha podido cancelar su reserva");
 
         if (totalMinutos <= MathUtil.getInt(parametro.getValor())) {
+            
             try {
                 iReservaDAO.cancel(idreserva);
                 message.setSuccess(1);
-                message.setStatus_message("Cancelacion exitosa");
+                message.setStatus_message("Se canceló su reserva exitosamente");
 
                 TUsuario usuario = iUsuarioDAO.findOne(tReserva.getIdUsuario());
-                iEmailService.sendMail(new String[]{usuario.getEmail()}, "CANCELACION DE RESERVA: " + tReserva.getShaReserva(), "SU RESERVA RESERVA REGISTRADA EL " + StrUtil.getDate(tReserva.getFechaReserva(), "dd/MM/yyyy") + " A LAS " + StrUtil.getDate(tReserva.getFechaReserva(), "hh:mm") + " A SIDO CANCELADA");
+                iEmailService.sendMail(new String[]{usuario.getEmail()}, "CANCELACION DE RESERVA: " + tReserva.getShaReserva(), "SU RESERVA RESERVA REGISTRADA EL " + StrUtil.getDate(tReserva.getFechaReserva(), "dd/MM/yyyy") + " A LAS " + StrUtil.getDate(tReserva.getFechaReserva(), "hh:mm") + " HA SIDO CANCELADA");
 
             } catch (Exception e) {
                 log.error(e.getMessage(), e);
             }
         } else {
-            message.setStatus_message("Cancelacion fuera de plazo");
+            message.setStatus_message("No se puede cancelar en estos momento, se encuentra fuera del plazo para realizar dicha operación");
         }
 
         return message;

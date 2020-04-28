@@ -17,7 +17,7 @@ public class TParqueoDTO {
     private Date fecha;
     private String entrada;
     private String zona;
-    private String observaciones;
+    private String observacion;
     private String image;
     private Integer idUsuario;
 

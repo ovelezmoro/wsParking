@@ -59,7 +59,7 @@ public class PythonController {
             @ApiParam(value = "playa", required = true) @RequestParam(value = "playa", required = true) Integer playa) throws InterruptedException, IOException {
 
         Map<String, Object> map = iParkingDAO.getPlaya(playa);
-
+        System.out.println("valor del dia:" + dia.substring(20,30));
         String[] params = new String[10];
         File script = new File("probabilidad.py");
         params[0] = path;
@@ -70,7 +70,7 @@ public class PythonController {
         params[5] = password;
         params[6] = database;
         Calendar c = Calendar.getInstance();
-        c.setTime(DateUtil.getDate(dia, "yyyy-MM-dd"));
+        c.setTime(DateUtil.getDate(dia.substring(20,30), "YYYY-MM-DD"));
         params[7] = StrUtil.getString(playa); //ID DE LA PLAYA
         params[8] = StrUtil.getString(c.get(Calendar.DAY_OF_WEEK) - 1); //DIA DE LA SEMANA
         params[9] = StrUtil.getString(hora); //HORA DE LA PROBABILIDAD

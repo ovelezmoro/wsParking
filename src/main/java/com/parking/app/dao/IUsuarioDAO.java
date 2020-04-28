@@ -28,7 +28,11 @@ public interface IUsuarioDAO {
 
     TUsuario findOne(Integer id);
 
+    TUsuario findByEmail(String email);
+    
     TUsuario findByUid(String uid);
+    
+    TUsuario findByEmailAndUid(String email, String with);
 
 }
 

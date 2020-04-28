@@ -7,6 +7,10 @@
     <select id="findByUid" resultType="TUsuario">
         SELECT * FROM t_usuario WHERE uid = #{uid}
     </select>
+    
+    <select id="findByEmailAndUid" resultType="TUsuario">
+        SELECT * FROM t_usuario WHERE email = #{email} AND loginWith = #{with} LIMIT 1
+    </select>
 
     <select id="findOne" resultType="TUsuario">
         SELECT * FROM t_usuario WHERE id = #{id}

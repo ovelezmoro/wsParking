@@ -123,6 +123,8 @@ public class DateUtil {
                 } catch (ParseException ex) {
                 }
             }
+        }else {
+            System.out.println("Variable null");
         }
         return date;
     }

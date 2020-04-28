@@ -47,18 +47,17 @@ public class UsuarioController {
 
     }
 
-    @CrossOrigin(origins = {"http://localhost:8100", "file://", "*"})
+    @CrossOrigin(origins = {"*"})
     @RequestMapping(method = {RequestMethod.OPTIONS, RequestMethod.POST}, value = "save", produces = "application/json", consumes = "application/json")
     @ResponseBody
     public TUsuario save(@RequestBody(required = false) SingInDTO singInDTO) {
-
-        TUsuario u = iUsuarioDAO.findByUid(singInDTO.getUid());
+        TUsuario u = iUsuarioDAO.findByEmailAndUid(singInDTO.getEmail(), singInDTO.getLoginWith());
         if (u == null) {
             u = new TUsuario(singInDTO);
             iUsuarioDAO.save(new TUsuario(singInDTO));
-        } else {
-            u.setVehiculos(iParkingDAO.getVehiculosByUser(u.getId()));
+            u = iUsuarioDAO.findByEmailAndUid(singInDTO.getEmail(), singInDTO.getLoginWith());
         }
+        u.setVehiculos(iParkingDAO.getVehiculosByUser(u.getId()));
         return u;
 
     }

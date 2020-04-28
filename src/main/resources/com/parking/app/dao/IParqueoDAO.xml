@@ -5,7 +5,7 @@
 <mapper namespace="com.parking.app.dao.IParqueoDAO">
 
     <insert id="save" parameterType="TParqueo">
-        INSERT INTO t_parqueo VALUES (NULL, #{placa}, #{marca}, #{color}, #{modelo}, #{fecha}, #{entrada}, #{zona}, #{observaciones}, #{image}, #{idUsuario})
+        INSERT INTO t_parqueo VALUES (NULL, #{placa}, #{marca}, #{color}, #{modelo}, #{fecha}, #{entrada}, #{zona}, #{observacion}, #{image}, #{idUsuario})
     </insert>
 
     <select id="findByPlaca" resultType="TParqueo" parameterType="String">

@@ -35,7 +35,7 @@ public class TParqueo {
         this.fecha = parqueoDTO.getFecha();
         this.entrada = parqueoDTO.getEntrada();
         this.zona = parqueoDTO.getZona();
-        this.observacion = parqueoDTO.getObservaciones();
+        this.observacion = parqueoDTO.getObservacion();
         this.image = parqueoDTO.getImage();
         this.idUsuario = parqueoDTO.getIdUsuario();
     }

@@ -82,12 +82,18 @@ public class ParqueoController {
         TParqueo parqueo = iParqueoDAO.findByPlaca(placa);
         Map<String, Object> map = new HashMap<>();
         if (parqueo != null) {
-            File file = new File("images/" + parqueo.getImage());
+            try{
+                File file = new File("images/" + parqueo.getImage());
 
-            FileInputStream fileInputStreamReader = new FileInputStream(file);
-            byte[] bytes = new byte[(int)file.length()];
-            fileInputStreamReader.read(bytes);
-            map.put("imagen", new String(Base64.encodeBase64(bytes)));
+                FileInputStream fileInputStreamReader = new FileInputStream(file);
+                byte[] bytes = new byte[(int)file.length()];
+
+                fileInputStreamReader.read(bytes);
+                map.put("imagen", new String(Base64.encodeBase64(bytes)));
+            } catch(Exception ex){
+                log.info("No hay imagen guardada");
+            }
+            map.put("imagen", null);
             map.put("parqueo", parqueo);
             return map;
         }
