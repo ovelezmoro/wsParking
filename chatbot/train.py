@@ -1,8 +1,8 @@
 from chatbot import chatbot
-from chatterbot.trainers import ChatterBotCorpusTrainer
+from chatterbot.trainers import ListTrainer
 
-trainer = ChatterBotCorpusTrainer(chatbot)
+trainer = ListTrainer(chatbot)
 
 trainer.train(
-    "chatterbot.corpus.spanish.conversations"
+    "./data/"
 )

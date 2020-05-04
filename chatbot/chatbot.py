@@ -2,7 +2,7 @@ from chatterbot import ChatBot
 from chatterbot.trainers import ListTrainer
 
 chatbot = ChatBot(
-    'Terminal',
+    'Bot',
     storage_adapter='chatterbot.storage.SQLStorageAdapter',
     logic_adapters=[
         {
@@ -10,15 +10,19 @@ chatbot = ChatBot(
             'default_response': 'Lo siento, pero no entiendo.',
             'maximum_similarity_threshold': 0.70
         }
-    ],
-    database_uri='sqlite:///database.db'
+    ]#,
+    #database_uri='sqlite:///database.db'
 )
 
 trainer = ListTrainer(chatbot)
 trainer.train(
-    "./data/"
+    "C:/Users/a_rkx/Desktop/Proyecto/v2/wsParking-master (1)/wsParking/chatbot/data/"
 )
 
+#trainer = ListTrainer(chatbot)
+#trainer.train(
+ #   "./data/"
+#)
 
 def get_response(text):
 

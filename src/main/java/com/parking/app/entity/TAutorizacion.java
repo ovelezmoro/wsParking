@@ -29,6 +29,7 @@ public class TAutorizacion {
     private String placa;
     private String color;
     private String ano;
+    private String fsalida;
     private String hsalida;
     private String firma;
     private Integer idUsuario;

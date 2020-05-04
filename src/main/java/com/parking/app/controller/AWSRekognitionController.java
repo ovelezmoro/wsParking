@@ -78,16 +78,31 @@ public class AWSRekognitionController {
 
         for (Label label : detectLabelsRequest(decoded)) {
             if (label.getName().equals("Vehicle") && label.getConfidence() > 80) {
+                log.info("LABEL ==>" + label.toString());
                 isVehicle = true;
             }
         }
-
+        
+        List<TextDetection> detections = detectTextRequestList(decoded);
+        String placa="";
+        for (TextDetection detection : detections) {
+            String texto = detection.getDetectedText().toUpperCase();
+            Pattern pattern = Pattern.compile("^[a-zA-Z0-9]{3}-[a-zA-Z0-9]{3}");
+            log.info("TEXTO => " + texto);
+            Matcher matcher = pattern.matcher(texto);
+            while(matcher.find()) {
+                placa = matcher.group(0);
+                isVehicle = true;
+            }
+            
+        }
+        
         if (isVehicle) {
 
             TextDetection detection = detectTextRequest(decoded);
 
-            String placa = StrUtil.reemplazarCaracteresEspeciales(detection.getDetectedText());
-
+            placa = StrUtil.reemplazarCaracteresEspeciales(detection.getDetectedText());
+            System.out.println("placa:" + placa);
             TVehiculo nVehiculo = iVehiculoDAO.findByPlaca(placa);
             if (nVehiculo == null && placa.length() == 7) {
                 Integer idUsuario = MathUtil.getInt(photo.get("usuario"));
@@ -169,7 +184,6 @@ public class AWSRekognitionController {
                 response.put("placa", placa);
                 log.info("PLACA => " + placa);
             }
-            
         }
         
 //        if (isVehicle) {
