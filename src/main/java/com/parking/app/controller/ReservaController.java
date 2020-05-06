@@ -70,8 +70,11 @@ public class ReservaController {
         tReserva.setPrecioReserva(reserva.getPrecioReserva());
         tReserva.setShaReserva("RES-COD-" + incremental);
         iReservaDAO.save(tReserva);
-
-        iEmailService.sendMail(new String[]{usuario.getEmail()}, "NUEVA RESERVA: " + tReserva.getShaReserva(), "RESERVA REGISTRADA PARA EL " + StrUtil.getDate(tReserva.getFechaReserva(), "dd/MM/yyyy") + " A LAS " + StrUtil.getDate(tReserva.getFechaReserva(), "hh:mm"));
+        
+        String strMensajeBody="Estimado usuario, " + usuario.getNombre() +"\n\n" + "Se ha generado una nueva reserva con el siguiente detalle:"+ "\n\n" + "Fecha de reserva:"+ " " + StrUtil.getDate(tReserva.getFechaReserva(), "dd/MM/yyyy")+ "\n" + "Hora de reserva:" + " " + StrUtil.getDate(tReserva.getFechaReserva(), "HH:mm a") +"."+ "\n\n"+  "Gracias por utilizar nuestro servicio." + "\n\n\n"+ "Saludos cordiales," + "\n"+ "Administración de Playas" + "\n\n\n\n"+  "Por favor, sírvase no responder a este correo electrónico";
+        String strMensajeSubject="NUEVA RESERVA:" + tReserva.getShaReserva();
+        
+        iEmailService.sendMail(new String[]{usuario.getEmail()}, strMensajeSubject, strMensajeBody);
         
         return tReserva;
 
@@ -102,7 +105,13 @@ public class ReservaController {
             tReserva.setFechaReserva(reserva.getFechaReserva());
             tReserva.setIdVehiculo(reserva.getIdVehiculo());
             iReservaDAO.update(tReserva);
-            iEmailService.sendMail(new String[]{usuario.getEmail()}, "ACTUALIZACION DE RESERVA: " + tReserva.getShaReserva(), "RESERVA REGISTRADA PARA EL " + StrUtil.getDate(tReserva.getFechaReserva(), "dd/MM/yyyy") + " A LAS " + StrUtil.getDate(tReserva.getFechaReserva(), "hh:mm"));
+            
+        String strMensajeBody="Estimado usuario, " + usuario.getNombre() +"\n\n" + "Se ha realizado una actualización de los datos de la reserva generada anteriormente:"+ "\n\n" + "Fecha de reserva:"+ " " + StrUtil.getDate(tReserva.getFechaReserva(), "dd/MM/yyyy")+ "\n" + "Hora de reserva:" + " " + StrUtil.getDate(tReserva.getFechaReserva(), "HH:mm a") +"."+ "\n\n"+  "Gracias por utilizar nuestro servicio." + "\n\n\n"+ "Saludos cordiales," + "\n"+ "Administración de Playas" + "\n\n\n\n"+  "Por favor, sírvase no responder a este correo electrónico";
+        String strMensajeSubject="ACTUALIZACION DE RESERVA:" + tReserva.getShaReserva();
+        
+        iEmailService.sendMail(new String[]{usuario.getEmail()}, strMensajeSubject, strMensajeBody);
+        
+            //iEmailService.sendMail(new String[]{usuario.getEmail()}, "ACTUALIZACION DE RESERVA: " + tReserva.getShaReserva(), "RESERVA REGISTRADA PARA EL " + StrUtil.getDate(tReserva.getFechaReserva(), "dd/MM/yyyy") + " A LAS " + StrUtil.getDate(tReserva.getFechaReserva(), "hh:mm"));
         } else {
             tReserva = null;
         }
@@ -157,7 +166,14 @@ public class ReservaController {
                 message.setStatus_message("Se canceló su reserva exitosamente");
 
                 TUsuario usuario = iUsuarioDAO.findOne(tReserva.getIdUsuario());
-                iEmailService.sendMail(new String[]{usuario.getEmail()}, "CANCELACION DE RESERVA: " + tReserva.getShaReserva(), "SU RESERVA RESERVA REGISTRADA EL " + StrUtil.getDate(tReserva.getFechaReserva(), "dd/MM/yyyy") + " A LAS " + StrUtil.getDate(tReserva.getFechaReserva(), "hh:mm") + " HA SIDO CANCELADA");
+                
+                
+                String strMensajeBody="Estimado usuario, " + usuario.getNombre() +"\n\n" + "La reserva generada con los siguientes datos:"+ "\n\n" + "Fecha de reserva:"+ " " + StrUtil.getDate(tReserva.getFechaReserva(), "dd/MM/yyyy")+ "\n" + "Hora de reserva:" + " " + StrUtil.getDate(tReserva.getFechaReserva(), "HH:mm a") + "\n\n"+ "Ha sido cancelada a petición suya."+ "\n\n"+  "Gracias por utilizar nuestro servicio." + "\n\n"+ "Saludos cordiales," + "\n"+ "Administración de Playas" + "\n\n\n\n"+  "Por favor, sírvase no responder a este correo electrónico";
+                String strMensajeSubject="CANCELACION DE RESERVA:" + tReserva.getShaReserva();
+                 
+                iEmailService.sendMail(new String[]{usuario.getEmail()}, strMensajeSubject, strMensajeBody);
+                
+                //iEmailService.sendMail(new String[]{usuario.getEmail()}, "CANCELACION DE RESERVA: " + tReserva.getShaReserva(), "SU RESERVA RESERVA REGISTRADA EL " + StrUtil.getDate(tReserva.getFechaReserva(), "dd/MM/yyyy") + " A LAS " + StrUtil.getDate(tReserva.getFechaReserva(), "hh:mm") + " HA SIDO CANCELADA");
 
             } catch (Exception e) {
                 log.error(e.getMessage(), e);
