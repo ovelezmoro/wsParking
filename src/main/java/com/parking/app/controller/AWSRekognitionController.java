@@ -136,10 +136,7 @@ public class AWSRekognitionController {
         String placa = StrUtil.reemplazarCaracteresEspeciales(detection.getDetectedText());
         log.info("placa =>" + placa);
         TReserva reserva = iReservaDAO.findLastTicket(photo.get("usuario"), placa);
-<<<<<<< HEAD
 
-=======
->>>>>>> cc2d3e5ae659515b8a78c22d2828191074826e34
         log.info("reserva =>" + reserva);
         if (reserva != null) {
             reserva.setUsuario(iUsuarioDAO.findOne(reserva.getIdUsuario()));
