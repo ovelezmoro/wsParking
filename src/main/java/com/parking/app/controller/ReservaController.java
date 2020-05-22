@@ -71,9 +71,13 @@ public class ReservaController {
         tReserva.setShaReserva("RES-COD-" + incremental);
         iReservaDAO.save(tReserva);
         
+<<<<<<< HEAD
         String horaReservaAumentada = StrUtil.aumentaHora(reserva.getFechaReserva(), 5);
 
         String strMensajeBody="Estimado usuario, " + usuario.getNombre() +"\n\n" + "Se ha generado una nueva reserva con el siguiente detalle:"+ "\n\n" + "Fecha de reserva:"+ " " + StrUtil.getDate(tReserva.getFechaReserva(), "dd/MM/yyyy")+ "\n" + "Hora de reserva:" + " " + horaReservaAumentada + "\n\n"+  "Gracias por utilizar nuestro servicio." + "\n\n\n"+ "Saludos cordiales," + "\n"+ "AdministraciÃ³n de Playas" + "\n\n\n\n"+  "Por favor, sÃ­rvase no responder a este correo electrÃ³nico";
+=======
+        String strMensajeBody="Estimado usuario, " + usuario.getNombre() +"\n\n" + "Se ha generado una nueva reserva con el siguiente detalle:"+ "\n\n" + "Fecha de reserva:"+ " " + StrUtil.getDate(tReserva.getFechaReserva(), "dd/MM/yyyy")+ "\n" + "Hora de reserva:" + " " + StrUtil.getDate(tReserva.getFechaReserva(), "HH:mm a") +"."+ "\n\n"+  "Gracias por utilizar nuestro servicio." + "\n\n\n"+ "Saludos cordiales," + "\n"+ "Administración de Playas" + "\n\n\n\n"+  "Por favor, sírvase no responder a este correo electrónico";
+>>>>>>> cc2d3e5ae659515b8a78c22d2828191074826e34
         String strMensajeSubject="NUEVA RESERVA:" + tReserva.getShaReserva();
         
         iEmailService.sendMail(new String[]{usuario.getEmail()}, strMensajeSubject, strMensajeBody);
@@ -107,10 +111,15 @@ public class ReservaController {
             tReserva.setFechaReserva(reserva.getFechaReserva());
             tReserva.setIdVehiculo(reserva.getIdVehiculo());
             iReservaDAO.update(tReserva);
+<<<<<<< HEAD
          
         String horaReservaAumentada = StrUtil.aumentaHora(reserva.getFechaReserva(), 5);
         
         String strMensajeBody="Estimado usuario, " + usuario.getNombre() +"\n\n" + "Se han actualizado los siguientes datos de la reserva:"+ "\n\n" + "Fecha de reserva:"+ " " + StrUtil.getDate(tReserva.getFechaReserva(), "dd/MM/yyyy")+ "\n" + "Hora de reserva:" + " " +  horaReservaAumentada + "\n\n"+  "Gracias por utilizar nuestro servicio." + "\n\n\n"+ "Saludos cordiales," + "\n"+ "AdministraciÃ³n de Playas" + "\n\n\n\n"+  "Por favor, sÃ­rvase no responder a este correo electrÃ³nico";
+=======
+            
+        String strMensajeBody="Estimado usuario, " + usuario.getNombre() +"\n\n" + "Se ha realizado una actualización de los datos de la reserva generada anteriormente:"+ "\n\n" + "Fecha de reserva:"+ " " + StrUtil.getDate(tReserva.getFechaReserva(), "dd/MM/yyyy")+ "\n" + "Hora de reserva:" + " " + StrUtil.getDate(tReserva.getFechaReserva(), "HH:mm a") +"."+ "\n\n"+  "Gracias por utilizar nuestro servicio." + "\n\n\n"+ "Saludos cordiales," + "\n"+ "Administración de Playas" + "\n\n\n\n"+  "Por favor, sírvase no responder a este correo electrónico";
+>>>>>>> cc2d3e5ae659515b8a78c22d2828191074826e34
         String strMensajeSubject="ACTUALIZACION DE RESERVA:" + tReserva.getShaReserva();
         
         iEmailService.sendMail(new String[]{usuario.getEmail()}, strMensajeSubject, strMensajeBody);
@@ -171,13 +180,23 @@ public class ReservaController {
 
                 TUsuario usuario = iUsuarioDAO.findOne(tReserva.getIdUsuario());
                 
+<<<<<<< HEAD
                 String horaReservaAumentada = StrUtil.aumentaHora(tReserva.getFechaReserva(), 5);
                 
                 String strMensajeBody="Estimado usuario, " + usuario.getNombre() +"\n\n" + "La reserva generada con los siguientes datos:"+ "\n\n" + "Fecha de reserva:"+ " " + StrUtil.getDate(tReserva.getFechaReserva(), "dd/MM/yyyy")+ "\n" + "Hora de reserva:" + " " + horaReservaAumentada + "\n\n"+ "Ha sido cancelada a peticiÃ³n suya."+ "\n\n"+  "Gracias por utilizar nuestro servicio." + "\n\n"+ "Saludos cordiales," + "\n"+ "AdministraciÃ³n de Playas" + "\n\n\n\n"+  "Por favor, sÃ­rvase no responder a este correo electrÃ³nico";
+=======
+                
+                String strMensajeBody="Estimado usuario, " + usuario.getNombre() +"\n\n" + "La reserva generada con los siguientes datos:"+ "\n\n" + "Fecha de reserva:"+ " " + StrUtil.getDate(tReserva.getFechaReserva(), "dd/MM/yyyy")+ "\n" + "Hora de reserva:" + " " + StrUtil.getDate(tReserva.getFechaReserva(), "HH:mm a") + "\n\n"+ "Ha sido cancelada a petición suya."+ "\n\n"+  "Gracias por utilizar nuestro servicio." + "\n\n"+ "Saludos cordiales," + "\n"+ "Administración de Playas" + "\n\n\n\n"+  "Por favor, sírvase no responder a este correo electrónico";
+>>>>>>> cc2d3e5ae659515b8a78c22d2828191074826e34
                 String strMensajeSubject="CANCELACION DE RESERVA:" + tReserva.getShaReserva();
                  
                 iEmailService.sendMail(new String[]{usuario.getEmail()}, strMensajeSubject, strMensajeBody);
                 
+<<<<<<< HEAD
+=======
+                //iEmailService.sendMail(new String[]{usuario.getEmail()}, "CANCELACION DE RESERVA: " + tReserva.getShaReserva(), "SU RESERVA RESERVA REGISTRADA EL " + StrUtil.getDate(tReserva.getFechaReserva(), "dd/MM/yyyy") + " A LAS " + StrUtil.getDate(tReserva.getFechaReserva(), "hh:mm") + " HA SIDO CANCELADA");
+
+>>>>>>> cc2d3e5ae659515b8a78c22d2828191074826e34
             } catch (Exception e) {
                 log.error(e.getMessage(), e);
             }
