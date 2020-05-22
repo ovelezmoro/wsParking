@@ -1,37 +1,31 @@
 from chatterbot import ChatBot
-from chatterbot.trainers import ListTrainer
+#from chatterbot.trainers import ListTrainer
+#import os
 
 chatbot = ChatBot(
-    'Bot',
+    'Terminal',
     storage_adapter='chatterbot.storage.SQLStorageAdapter',
     logic_adapters=[
         {
             'import_path': 'chatterbot.logic.BestMatch',
-            'default_response': 'Lo siento, pero no entiendo.',
+            'default_response': 'Lo siento, pero no entiendo la pregunta realizada.',
             'maximum_similarity_threshold': 0.70
         }
-    ]#,
-    #database_uri='sqlite:///database.db'
+    ],
+    input_adapter="chatterbot.input.TerminalAdapter",
+    output_adapter="chatterbot.output.TerminalAdapter",
+    database_uri=None,
+    read_only=True
 )
-
-trainer = ListTrainer(chatbot)
-trainer.train(
-    "C:/Users/a_rkx/Desktop/Proyecto/v2/wsParking-master (1)/wsParking/chatbot/data/"
-)
-
-#trainer = ListTrainer(chatbot)
-#trainer.train(
- #   "./data/"
-#)
 
 def get_response(text):
 
     while True:
-        if text.strip() != 'Bye':
+        if text.strip() != 'Hasta luego':
             result = chatbot.get_response(text)
             reply = str(result)
             print(reply)
             return(reply)
-        if text.strip() == 'Bye':
-            return('Bye')
-            break
+        if text.strip() == 'Hasta luego':
+            return('Muchas gracias por usar nuestro servicio')
+        break

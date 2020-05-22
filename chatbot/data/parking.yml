@@ -1,37 +1,33 @@
 categories:
-- parking
-categories:
-- - "¿Cómo se puede realizar una reserva?"
-  - Mediante el aplicativo de Parking en la opción de Reservas y se deben seguir los siguientes pasos
-    Ingresar la dirección a la que se quiere ir, seleccionar la opcion Reservar cuando se selecciona una de las opciones mostradas.
-    Luego, se debe seleccionar la fecha/hora de la reserva, la placa del vehiculo (se debe haber registrado previamente)  y seleccionar
-    la opcion Confirmar para finalizar la reserva
-- - "¿Cómo se registra la placa de un vehículo?
-    Mediante el aplicativo de Parking en la opción de Reservas y se deben seguir los siguientes pasos
-    Ingresar una dirección, seleccionar una playa de la lista mostrada, seleccionar la opcion Reservar
-    Luego, se mostrará un mensaje indicando que no cuenta con placas registradas 
-- - "¿Cómo puedo conocer el detalle de mi reserva realizada?
-  - Cuando se realiza una reserva se envia un correo electrónico con la siguiente informacion
-    Playa donde se realizo la reserva
-    Fecha y Hora de la reserva
-- - "¿Cuánto cuesta realizar una reserva?"
-  - El costo de una Reserva es de S/. 5.00, costo incluye el IGV.
-- - "¿Cómo se puede cancelar una reserva?"
-  - Mediante el aplicativo de Parking en la opción de Consulta de Reservas. 
-    Ingresar a la opcion Consulta de Reservas, deslizar la reserva realizada hacia la izquierda para activar la opcion Cancelar
-    Luego, seleccionar la opcion Cancelar, se le preguntará si esta seguro de cancelar la reserva y la seleccionamos la Opcion SI 
-    para cancelar la reserva realizada.
-- - "¿Cómo puedo verificar que mi reserva se haya cancelado"
-  - Mediante el aplicativo de Parking en la opción Consulta de Reservas.
-    Seleccionar la opcion de filtro de Estado y seleccionamos la opcion "Cancelados" y se mostrará todas las reservas canceladas
-    por el usuario
-- - "¿Cómo se puede realizar el cambio de fecha de una reserva"
-  - Mediante el aplicativo de Parking en la opción de Consulta de Reservas. Se debe considerar que la reserva no debe haber
-    sido iniciada.
-- - "¿Cuánto es el costo adicional en caso de reasignar una reserva realizada?"
-  - No tiene ningun costo pero solo se puede realizar siempre y cuando la reserva no haya iniciado.
-- - "¿Cómo puedo saber el tiempo que voy consumiendo en el estacionamiento?"
-  - Mediante el aplicativo Parking en la opción Mis consumos
-    Ingresar a la opcion Mis consumos, tomar foto a la placa del vehiculo y se mostrará el detalle de su consumo.
-- - "¿Qué sucede sino encuentro estacionamiento disponible cuando lo necesito?"
-  - "Deberá seleccionar otro estacionamiento disponible en la opción Reserva.
+- parkings
+conversations:
+- - ¿Como se puede realizar una reserva?
+  En la opcion Reservas, ingresas los datos obligatorios (la direccion donde iras, fecha/hora de la reserva y la placa del vehiculo). Para finalizar la operacion debes seleccionar la opcion Confirmar y se mostrara la pantalla de exito. No olvides que los datos seran enviados al correo que hayas registrado.
+- - ¿Como se registra la placa de un vehiculo?
+  En la opcion Mi Perfil, seleccionas el boton Ver vehiculos y deberas tomar una foto a tu placa cuando se abra la camara.
+- - ¿Hay alguna otra forma de hacerlo?
+  Claro, cuando vas a realizar una reserva te pregunta si deseas registrar un vehiculo para continuar.
+- - ¿Cuanto cuesta realizar una reserva?
+  El costo de una Reserva es de S/. 5.00, costo incluye el IGV.
+- - ¿Como se puede cancelar una reserva?
+  En la opcion Historial de reservas, deslizas hacia la izquierda en la reserva a cancelar, seleccionas la opcion Cancelar, luego la opcion SI y en unos minutos estara cancelada. Para cancelar la reserva deberas realizarlo hasta una hora antes del vencimiento de la misma
+- - ¿Cómo puedo verificar que mi reserva se haya cancelado?
+  En la opcion de Historial de reservas, puedes seleccionar del filtro Estado la opcion Cancelado y te mostraran las reservas que hayas cancelado previamente (solo las 6 ultimas)
+- - ¿Cómo se puede realizar el cambio de fecha de una reserva
+  En la opcion de Historial de reservas, deslizas hacia la izquierda en la reserva a modificar, modificas los datos necesarios (vehiculo y fecha/hora de reserva). Para finalizar la operacion debes seleccionar la opcion Confirmar y se mostrara la pantalla de exito. No olvides que los datos seran enviados al correo que hayas registrado.
+- - ¿Cuanto es el costo adicional en caso de reasignar una reserva realizada?
+  No tiene ningun costo pero solo se puede realizar siempre y cuando la reserva no haya iniciado.
+- - Para reasignar una reserva tiene algun plazo establecido?
+  Debes realizarlo una hora antes del plazo de vencimiento y desde la opcion de Historial de reservas.
+- - ¿Como puedo saber el tiempo que voy consumiendo en el estacionamiento?
+  En la opcion de Detalle de consumo, deberas tomarle foto a la placa de tu vehiculo y te mostrara el ticket con el detalle de tu consumo hasta el momento
+- - ¿Que sucede sino encuentro estacionamiento disponible cuando lo necesito?
+  El aplicativo solo mostrara las playas que cuenten con estacionamiento disponible
+- - Es necesario crearse una cuenta para ingresar al aplicativo"
+  No, tambien puedes ingresar al aplicativo mediante redes sociales (Gmail y Facebook)
+- - Como puedo saber si existen promociones nuevas?
+  El aplicativo envia notificaciones a los conductores cuando se realiza un cambio de tarifa en alguna playa
+- - Y esos descuentos son para siempre?
+  No, tienen vigencia de unas horas.
+- - Gracias por la informacion brindada
+  Estamos para servirle

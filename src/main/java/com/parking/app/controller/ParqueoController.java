@@ -41,13 +41,13 @@ public class ParqueoController {
         String time = StrUtil.getString(new Date().getTime());
 
         try (BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(new FileOutputStream("images/" + time + ".png"))) {
+            
             bufferedOutputStream.write(decoded);
             map.put("image", time + ".png");
         } catch (IOException ex) {
             log.error(ex.getMessage(), ex);
             map.put("message", "error");
         }
-        ;
 
         return map;
 
@@ -80,10 +80,13 @@ public class ParqueoController {
 
         String placa = request.get("texto");
         TParqueo parqueo = iParqueoDAO.findByPlaca(placa);
+        log.info("PARQUEO ==>" + parqueo);
         Map<String, Object> map = new HashMap<>();
         if (parqueo != null) {
             try{
+                
                 File file = new File("images/" + parqueo.getImage());
+                log.info("RUTA ==>" + file.getAbsolutePath());
 
                 FileInputStream fileInputStreamReader = new FileInputStream(file);
                 byte[] bytes = new byte[(int)file.length()];
@@ -92,8 +95,8 @@ public class ParqueoController {
                 map.put("imagen", new String(Base64.encodeBase64(bytes)));
             } catch(Exception ex){
                 log.info("No hay imagen guardada");
-            }
-            map.put("imagen", null);
+                 map.put("imagen", null);
+            } 
             map.put("parqueo", parqueo);
             return map;
         }

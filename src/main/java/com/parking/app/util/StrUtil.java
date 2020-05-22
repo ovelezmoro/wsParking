@@ -74,6 +74,26 @@ public class StrUtil {
         SimpleDateFormat sdf = new SimpleDateFormat(format);
         return getDate(date, sdf);
     }
+    
+    public static String aumentaHora(Date fechaReserva, int aumento){
+        
+        String formatoHora;
+        String horaReserva;
+        
+        int hora = Integer.parseInt(StrUtil.getDate(fechaReserva, "HH")) + 5;
+        int minutos =  Integer.parseInt(StrUtil.getDate(fechaReserva, "mm"));
+        
+        if (hora > 12){
+              formatoHora = "PM";
+        }else{
+             formatoHora= "AM";
+        }
+            
+        horaReserva = hora + ":" + minutos + " " + formatoHora;
+        System.out.println("HORA ==>" + hora);
+        return horaReserva;
+    }
+    
 
     public static String formatNumber(Object number, int decimal) {
         String pattern = "#0";

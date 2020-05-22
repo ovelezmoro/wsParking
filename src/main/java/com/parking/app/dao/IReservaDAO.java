@@ -6,6 +6,7 @@
 package com.parking.app.dao;
 
 import com.parking.app.entity.TReserva;
+import com.parking.app.entity.TTarifa;
 
 import java.util.List;
 
@@ -37,5 +38,5 @@ public interface IReservaDAO {
     TReserva last();
 
     TReserva findLastTicket(@Param("id_usuario") String usuario, @Param("placa") String placa);
-
+   
 }

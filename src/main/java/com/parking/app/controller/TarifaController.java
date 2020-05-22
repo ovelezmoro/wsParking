@@ -62,7 +62,7 @@ public class TarifaController {
         if(playa != null){
             iTarifaDAO.updateByIdPlaya(nueva_tarifa.getIdplaya(), nueva_tarifa.getTarifa());
 
-            String mensaje = "Se ha generado una nueva tarifa para la playa" + playa.getNombre() + "ubicada en:" + playa.getDireccion() + ". La oferta estára vigente hasta nuevo aviso. Gracias por utilizar nuestro servicio.";
+            String mensaje = "Se ha generado una nueva tarifa para la playa " + playa.getNombre() + " ubicada en: " + playa.getDireccion() + ". La oferta estára vigente hasta nuevo aviso.  Gracias por utilizar nuestro servicio.";
             String title = "Mensaje de Validación";
 
             iNotificationServiceImpl.sendMessageToAllUsers(title, mensaje);

@@ -126,17 +126,18 @@ public class AWSRekognitionController {
     @RequestMapping(method = {RequestMethod.OPTIONS, RequestMethod.POST}, value = "consultaTicket", produces = "application/json", consumes = "application/json")
     @ResponseBody
     public TReserva consultaTicket(@RequestBody(required = true) Map<String, String> photo) throws IOException, AmazonRekognitionException {
-
-        String image = photo.get("photo").replace("data:image/jpeg;base64,", "");
+        
+       String image = photo.get("photo").replace("data:image/jpeg;base64,", "");
 
         byte[] decoded = Base64.decodeBase64(image);
 
         TextDetection detection = detectTextRequest(decoded);
-
+        log.info("DETECTION =>" + detection);
         String placa = StrUtil.reemplazarCaracteresEspeciales(detection.getDetectedText());
-
+        log.info("placa =>" + placa);
         TReserva reserva = iReservaDAO.findLastTicket(photo.get("usuario"), placa);
 
+        log.info("reserva =>" + reserva);
         if (reserva != null) {
             reserva.setUsuario(iUsuarioDAO.findOne(reserva.getIdUsuario()));
 
