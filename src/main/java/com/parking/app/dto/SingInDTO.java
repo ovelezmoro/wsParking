@@ -28,5 +28,6 @@ public class SingInDTO {
     private String phone;
     private String uid; 
     private String loginWith;
+    private String tipo;
     
 }

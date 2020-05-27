@@ -17,8 +17,8 @@
     </select>
 
     <insert id="save" parameterType="TUsuario">
-        INSERT INTO t_usuario VALUES (NULL, #{nombre}, #{email}, #{photoUrl}, #{uid}, #{loginWith}, #{phone}, 'U')
-    </insert>
+        INSERT INTO t_usuario VALUES (NULL, #{nombre}, #{email}, #{photoUrl}, #{uid}, #{loginWith}, #{phone}, #{tipo})
+    </insert>1
 
     <update id="update" parameterType="TUsuario">
         UPDATE t_usuario SET nombre = #{nombre}, phone = #{phone} WHERE id = #{id}

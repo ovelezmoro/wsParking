@@ -43,6 +43,7 @@ public class TUsuario {
         this.phone = singInDTO.getPhone();
         this.uid = singInDTO.getUid();
         this.loginWith = singInDTO.getLoginWith();
+        this.tipo = singInDTO.getTipo();
     }
 
 }
