@@ -18,5 +18,7 @@ public class TVehiculo {
     private Integer id;
     private String placa;
     private Integer idUsuario;
+    private String marca;
+    private String modelo;
 
 }
