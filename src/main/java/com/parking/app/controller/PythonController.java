@@ -98,7 +98,7 @@ public class PythonController {
             throw new RuntimeException(str);
         }
 
-        map.put("probabilidad_python", MathUtil.getDouble(str));
+        map.put("probabilidad_python", MathUtil.round(MathUtil.getDouble(str)*100, 2));
         System.out.println(map);
         return map;
     }
