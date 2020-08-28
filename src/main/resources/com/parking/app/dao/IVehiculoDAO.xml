@@ -5,7 +5,7 @@
 <mapper namespace="com.parking.app.dao.IVehiculoDAO">
 
     <insert id="save" parameterType="TVehiculo">
-        INSERT INTO t_vehiculo VALUES (NULL, #{placa}, #{idUsuario})
+        INSERT INTO t_vehiculo VALUES (NULL, #{placa}, NULL,NULL, #{idUsuario})
     </insert>
 
     <select id="findByPlaca" resultType="TVehiculo">
