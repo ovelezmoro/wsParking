@@ -182,7 +182,7 @@ public class ReservaController {
                 log.error(e.getMessage(), e);
             }
         } else {
-            message.setStatus_message("No se puede cancelar en estos momento, se encuentra fuera del plazo para realizar dicha operaciÃ³n");
+            message.setStatus_message("Tiempo excedido para cancelar la reserva");
         }
 
         return message;
