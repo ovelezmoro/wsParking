@@ -52,6 +52,22 @@
         SELECT * FROM t_reserva t1 WHERE t1.id_usuario = #{id_usuario} ORDER BY id DESC LIMIT 10
     </select>
 
+    <select id="findByCodReserva" resultType="TReserva">
+        SELECT * FROM t_reserva t1 WHERE t1.sha_reserva = #{codigoReserva}
+    </select>
+
+    <update id="iniciarReserva">
+        update t_reserva t
+        set t.fecha_ingreso = STR_TO_DATE(#{fechaIngreso}, '%d/%m/%Y %T')
+        where t.sha_reserva = #{codigoReserva}
+    </update>
+
+    <update id="finalizarReserva">
+        update t_reserva t
+        set t.fecha_salida = STR_TO_DATE(#{fechaIngreso}, '%d/%m/%Y %T')
+        where t.sha_reserva = #{codigoReserva}
+    </update>
+
     <update id="cancel">
         UPDATE t_reserva SET estado='C' WHERE id = #{id}
     </update>

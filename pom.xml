@@ -94,7 +94,6 @@
             <artifactId>aws-java-sdk-core</artifactId>
             <version>1.11.428</version>
         </dependency>
-
         <!-- WAR -->
         <!--        <dependency>
             <groupId>javax.servlet</groupId>

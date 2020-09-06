@@ -38,5 +38,11 @@ public interface IReservaDAO {
     TReserva last();
 
     TReserva findLastTicket(@Param("id_usuario") String usuario, @Param("placa") String placa);
+
+    TReserva findByCodReserva(String codigoReserva);
+
+    void iniciarReserva(String codigoReserva, String fechaIngreso);
+
+    void finalizarReserva(String codigoReserva, String fechaIngreso);
    
 }

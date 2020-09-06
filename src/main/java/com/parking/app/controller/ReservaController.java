@@ -5,10 +5,13 @@
  */
 package com.parking.app.controller;
 
+import com.amazonaws.services.rekognition.model.AmazonRekognitionException;
+import com.amazonaws.services.rekognition.model.TextDetection;
 import com.parking.app.dao.*;
 import com.parking.app.dto.CancelReservaResponseDTO;
 import com.parking.app.dto.TReservaDTO;
 import com.parking.app.entity.TParametro;
+import com.parking.app.entity.TPlaya;
 import com.parking.app.entity.TReserva;
 import com.parking.app.entity.TUsuario;
 import com.parking.app.service.IEmailService;
@@ -16,12 +19,15 @@ import com.parking.app.util.DateUtil;
 import com.parking.app.util.MathUtil;
 import com.parking.app.util.StrUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Osmar Velezmoro <SIS-SINTAD>
@@ -48,6 +54,9 @@ public class ReservaController {
 
     @Autowired
     IParametroDAO iParametroDAO;
+
+    @Autowired
+    ITarifaDAO iTarifaDAO;
 
     @CrossOrigin(origins = {"http://localhost:8100", "file://", "*"})
     @RequestMapping(method = {RequestMethod.OPTIONS, RequestMethod.POST}, value = "saveReserva", produces = "application/json", consumes = "application/json")
@@ -186,6 +195,34 @@ public class ReservaController {
         }
 
         return message;
+
+    }
+
+    @CrossOrigin(origins = "*", allowCredentials = "false")
+    @RequestMapping(method = {RequestMethod.GET}, value = "consultar/{codReserva}")
+    @ResponseBody
+    public TReserva consultarPorReserva(@PathVariable(value = "codReserva") String codReserva) {
+
+        TReserva reserva = iReservaDAO.findByCodReserva(codReserva);
+
+
+        log.info("reserva =>" + reserva);
+        if (reserva != null) {
+            if(reserva.getFechaIngreso() == null) {
+                iReservaDAO.iniciarReserva(codReserva, StrUtil.getDate(new Date(), "dd/MM/yyyy HH:mm:ss"));
+            } else {
+                iReservaDAO.finalizarReserva(codReserva, StrUtil.getDate(new Date(), "dd/MM/yyyy HH:mm:ss"));
+
+            }
+
+            reserva.setUsuario(iUsuarioDAO.findOne(reserva.getIdUsuario()));
+            TPlaya playa = iPlayaDAO.findOne(reserva.getIdPlaya());
+            playa.setTarifa(iTarifaDAO.findByPlaya(playa.getId()));
+            reserva.setPlaya(playa);
+            reserva.setVehiculo(iVehiculoDAO.findOne(reserva.getIdVehiculo()));
+            return reserva;
+        }
+        return null;
 
     }
 

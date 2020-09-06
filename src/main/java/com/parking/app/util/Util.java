@@ -6,6 +6,8 @@
 package com.parking.app.util;
 
 import com.amazonaws.auth.AWSCredentials;
+import com.amazonaws.auth.AWSStaticCredentialsProvider;
+import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.auth.profile.ProfileCredentialsProvider;
 
 /**
@@ -15,9 +17,11 @@ import com.amazonaws.auth.profile.ProfileCredentialsProvider;
 public class Util {
 
     public static final AWSCredentials CREDENTIALS;
+    public static final BasicAWSCredentials awsCreds = new BasicAWSCredentials("AKIAIRXYNGOUDEHYNEGQ","qVvest24gGn6SWndU1AEFIstF+Wt9+0MHM44yX95");
+
 
     static {
-        CREDENTIALS = new ProfileCredentialsProvider().getCredentials();
+        CREDENTIALS = new AWSStaticCredentialsProvider(awsCreds).getCredentials(); //new ProfileCredentialsProvider().getCredentials();
     }
 
 }
