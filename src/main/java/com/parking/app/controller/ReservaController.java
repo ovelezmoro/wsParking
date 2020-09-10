@@ -211,7 +211,7 @@ public class ReservaController {
             if(reserva.getFechaIngreso() == null) {
                 iReservaDAO.iniciarReserva(codReserva, StrUtil.getDate(new Date(), "dd/MM/yyyy HH:mm:ss"));
             } else {
-                if(reserva.getFechaFin() == null) {
+                if(reserva.getFechaSalida() == null) {
                     iReservaDAO.finalizarReserva(codReserva, StrUtil.getDate(new Date(), "dd/MM/yyyy HH:mm:ss"));
                 }
             }
