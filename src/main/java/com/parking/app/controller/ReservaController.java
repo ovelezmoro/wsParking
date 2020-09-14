@@ -197,7 +197,6 @@ public class ReservaController {
 
     @CrossOrigin(origins = "*", allowCredentials = "false")
     @RequestMapping(method = {RequestMethod.GET}, value = "consultar/{codReserva}")
-    @ResponseBody
     public Map consultarPorReserva(@PathVariable(value = "codReserva") String codReserva) {
         Map<String, Object> resopnse = new HashMap<>();
         Date fecha = new Date();
