@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.parking.app.dao.ITicketDAO">
+
+    <insert id="creaTicket">
+        insert into t_tickets(placa,
+                              cod_reserva,
+                              fecha_ingreso,
+                              playa,
+                              tarifa_estacionamiento,
+                              tarifa_reserva) values  (
+                                  #{placa},
+                                  #{codReserva},
+                                  STR_TO_DATE(#{fechaIngreso}, '%d/%m/%Y %T'),
+                                  #{playa},
+                                  #{tarifaEstacionamiento},
+                                  #{tarifaReserva}
+                              )
+    </insert>
+
+    <select id="buscarTicket" resultType="TTicket">
+        SELECT * FROM t_tickets t WHERE t.ticket = #{codTicket}
+    </select>
+
+    <update id="finalizaTicket">
+        UPDATE t_tickets t
+        SET t.fecha_salida = STR_TO_DATE(#{fechaSalida}, '%d/%m/%Y %T'),
+            t.monto_total = CEIL(TIMESTAMPDIFF(MINUTE, t.fecha_ingreso, t.fecha_salida) / 60) * t.tarifa_reserva + t.tarifa_estacionamiento
+        WHERE t.id = #{id}
+        AND t.fecha_salida is null;
+    </update>
+
+    <select id="buscarTicketPorReserva" resultType="TTicket">
+        SELECT * FROM t_tickets t WHERE t.cod_reserva = #{codReserva}
+    </select>
+
+
+</mapper>

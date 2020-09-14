@@ -2,37 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4aaef5c8-ac10-4f45-a726-f16bf7c85b61" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/parking/app/controller/ReservaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/parking/app/controller/ReservaController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/parking/app/dao/IReservaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/parking/app/dao/IReservaDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/parking/app/util/Util.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/parking/app/util/Util.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/parking/app/dao/IReservaDAO.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/parking/app/dao/IReservaDAO.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/parking/app/dao/IParkingDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/parking/app/dao/IParkingDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/parking/app/dao/IParkingDAO.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/parking/app/dao/IParkingDAO.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/parking/app/entity/TReserva.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/parking/app/entity/TReserva.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/parking/app/entity/TUsuario.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/parking/app/entity/TUsuario.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/parking/app/entity/TVehiculo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/parking/app/entity/TVehiculo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mybatis-config.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wsParking.iml" beforeDir="false" afterPath="$PROJECT_DIR$/wsParking.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="DatabaseView">
-    <option name="SHOW_INTERMEDIATE" value="true" />
-    <option name="GROUP_SCHEMA" value="true" />
-    <option name="GROUP_CONTENTS" value="false" />
-    <option name="SORT_POSITIONED" value="false" />
-    <option name="SHOW_TABLE_DETAILS" value="true" />
-    <option name="SHOW_EMPTY_GROUPS" value="false" />
-    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
   </component>
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
@@ -54,6 +32,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RequestMappingsPanelOrder0" value="0" />
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelWidth0" value="75" />
@@ -63,26 +42,26 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/com/parking/app/dao" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/images" />
-      <recent name="$PROJECT_DIR$/src/main/java/com/parking/app/controller" />
-      <recent name="$PROJECT_DIR$/src/main/resources/com/parking/app/dao" />
-      <recent name="C:\Users\LENOVO\Documents\NetBeansProjects\WsParking" />
-      <recent name="C:\Users\LENOVO\Documents\NetBeansProjects\WsParking\src\main\resources\com\parking\app\dao" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources" />
+      <recent name="$PROJECT_DIR$/firmas" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.parking.app.entity" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/resources" />
-      <recent name="$PROJECT_DIR$/firmas" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/com/parking/app/dao" />
+      <recent name="$PROJECT_DIR$/images" />
+      <recent name="$PROJECT_DIR$/src/main/java/com/parking/app/controller" />
+      <recent name="C:\Users\LENOVO\Documents\NetBeansProjects\WsParking" />
+      <recent name="C:\Users\LENOVO\Documents\NetBeansProjects\WsParking\src\main\resources\com\parking\app\dao" />
     </key>
   </component>
   <component name="RunManager">
@@ -285,6 +264,12 @@
       <workItem from="1599004811462" duration="4827000" />
       <workItem from="1599166800289" duration="5407000" />
       <workItem from="1599358308232" duration="551000" />
+      <workItem from="1599424116740" duration="719000" />
+      <workItem from="1599504957816" duration="191000" />
+      <workItem from="1599840888303" duration="1019000" />
+      <workItem from="1599851462227" duration="596000" />
+      <workItem from="1600044433334" duration="289000" />
+      <workItem from="1600054435492" duration="13821000" />
     </task>
     <servers />
   </component>
@@ -292,46 +277,50 @@
     <option name="version" value="2" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="104" y="47" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1599004891247">
+    <state x="104" y="47" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600105296987">
       <screen x="0" y="23" width="1280" height="725" />
     </state>
-    <state x="104" y="47" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1280.725@0.23.1280.725" timestamp="1599004891247" />
+    <state x="104" y="47" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1280.725@0.23.1280.725" timestamp="1600105296987" />
     <state x="377" y="182" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1599004890231">
       <screen x="0" y="23" width="1280" height="725" />
     </state>
     <state x="377" y="182" key="#com.intellij.ide.util.TreeClassChooserDialog/0.23.1280.725@0.23.1280.725" timestamp="1599004890231" />
-    <state width="1238" height="182" key="GridCell.Tab.0.bottom" timestamp="1599366261137">
+    <state width="846" height="180" key="GridCell.Tab.0.bottom" timestamp="1600110844671">
       <screen x="0" y="23" width="1280" height="725" />
     </state>
-    <state width="1238" height="182" key="GridCell.Tab.0.bottom/0.23.1280.725@0.23.1280.725" timestamp="1599366261137" />
-    <state width="1238" height="182" key="GridCell.Tab.0.center" timestamp="1599366261136">
+    <state width="846" height="180" key="GridCell.Tab.0.bottom/0.23.1280.725@0.23.1280.725" timestamp="1600110844671" />
+    <state width="846" height="180" key="GridCell.Tab.0.center" timestamp="1600110844670">
       <screen x="0" y="23" width="1280" height="725" />
     </state>
-    <state width="1238" height="182" key="GridCell.Tab.0.center/0.23.1280.725@0.23.1280.725" timestamp="1599366261136" />
-    <state width="1238" height="182" key="GridCell.Tab.0.left" timestamp="1599366261136">
+    <state width="846" height="180" key="GridCell.Tab.0.center/0.23.1280.725@0.23.1280.725" timestamp="1600110844670" />
+    <state width="846" height="180" key="GridCell.Tab.0.left" timestamp="1600110844670">
       <screen x="0" y="23" width="1280" height="725" />
     </state>
-    <state width="1238" height="182" key="GridCell.Tab.0.left/0.23.1280.725@0.23.1280.725" timestamp="1599366261136" />
-    <state width="1238" height="182" key="GridCell.Tab.0.right" timestamp="1599366261137">
+    <state width="846" height="180" key="GridCell.Tab.0.left/0.23.1280.725@0.23.1280.725" timestamp="1600110844670" />
+    <state width="846" height="180" key="GridCell.Tab.0.right" timestamp="1600110844671">
       <screen x="0" y="23" width="1280" height="725" />
     </state>
-    <state width="1238" height="182" key="GridCell.Tab.0.right/0.23.1280.725@0.23.1280.725" timestamp="1599366261137" />
-    <state width="1238" height="182" key="GridCell.Tab.1.bottom" timestamp="1599366261139">
+    <state width="846" height="180" key="GridCell.Tab.0.right/0.23.1280.725@0.23.1280.725" timestamp="1600110844671" />
+    <state width="1238" height="182" key="GridCell.Tab.1.bottom" timestamp="1600110844220">
       <screen x="0" y="23" width="1280" height="725" />
     </state>
-    <state width="1238" height="182" key="GridCell.Tab.1.bottom/0.23.1280.725@0.23.1280.725" timestamp="1599366261139" />
-    <state width="1238" height="182" key="GridCell.Tab.1.center" timestamp="1599366261138">
+    <state width="1238" height="182" key="GridCell.Tab.1.bottom/0.23.1280.725@0.23.1280.725" timestamp="1600110844220" />
+    <state width="1238" height="182" key="GridCell.Tab.1.center" timestamp="1600110844218">
       <screen x="0" y="23" width="1280" height="725" />
     </state>
-    <state width="1238" height="182" key="GridCell.Tab.1.center/0.23.1280.725@0.23.1280.725" timestamp="1599366261138" />
-    <state width="1238" height="182" key="GridCell.Tab.1.left" timestamp="1599366261138">
+    <state width="1238" height="182" key="GridCell.Tab.1.center/0.23.1280.725@0.23.1280.725" timestamp="1600110844218" />
+    <state width="1238" height="182" key="GridCell.Tab.1.left" timestamp="1600110844217">
       <screen x="0" y="23" width="1280" height="725" />
     </state>
-    <state width="1238" height="182" key="GridCell.Tab.1.left/0.23.1280.725@0.23.1280.725" timestamp="1599366261138" />
-    <state width="1238" height="182" key="GridCell.Tab.1.right" timestamp="1599366261139">
+    <state width="1238" height="182" key="GridCell.Tab.1.left/0.23.1280.725@0.23.1280.725" timestamp="1600110844217" />
+    <state width="1238" height="182" key="GridCell.Tab.1.right" timestamp="1600110844219">
       <screen x="0" y="23" width="1280" height="725" />
     </state>
-    <state width="1238" height="182" key="GridCell.Tab.1.right/0.23.1280.725@0.23.1280.725" timestamp="1599366261139" />
+    <state width="1238" height="182" key="GridCell.Tab.1.right/0.23.1280.725@0.23.1280.725" timestamp="1600110844219" />
+    <state x="445" y="275" width="390" height="258" key="com.intellij.database.actions.DdlActions$CommentOnObjectAction$1" timestamp="1600108451881">
+      <screen x="0" y="23" width="1280" height="725" />
+    </state>
+    <state x="445" y="275" width="390" height="258" key="com.intellij.database.actions.DdlActions$CommentOnObjectAction$1/0.23.1280.725@0.23.1280.725" timestamp="1600108451881" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

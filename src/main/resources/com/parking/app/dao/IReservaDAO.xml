@@ -58,14 +58,18 @@
 
     <update id="iniciarReserva">
         update t_reserva t
-        set t.fecha_ingreso = STR_TO_DATE(#{fechaIngreso}, '%d/%m/%Y %T')
+        set t.fecha_ingreso = STR_TO_DATE(#{fechaIngreso}, '%d/%m/%Y %T'),
+            t.estado = 'I'
         where t.sha_reserva = #{codigoReserva}
+        and  t.estado != 'I'
     </update>
 
     <update id="finalizarReserva">
         update t_reserva t
-        set t.fecha_salida = STR_TO_DATE(#{fechaIngreso}, '%d/%m/%Y %T')
+        set t.fecha_salida = STR_TO_DATE(#{fechaSalida}, '%d/%m/%Y %T'),
+            t.estado = 'F'
         where t.sha_reserva = #{codigoReserva}
+          and t.estado != 'F'
     </update>
 
     <update id="cancel">

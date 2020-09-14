@@ -10,10 +10,7 @@ import com.amazonaws.services.rekognition.model.TextDetection;
 import com.parking.app.dao.*;
 import com.parking.app.dto.CancelReservaResponseDTO;
 import com.parking.app.dto.TReservaDTO;
-import com.parking.app.entity.TParametro;
-import com.parking.app.entity.TPlaya;
-import com.parking.app.entity.TReserva;
-import com.parking.app.entity.TUsuario;
+import com.parking.app.entity.*;
 import com.parking.app.service.IEmailService;
 import com.parking.app.util.DateUtil;
 import com.parking.app.util.MathUtil;
@@ -24,10 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author Osmar Velezmoro <SIS-SINTAD>
@@ -57,6 +51,9 @@ public class ReservaController {
 
     @Autowired
     ITarifaDAO iTarifaDAO;
+
+    @Autowired
+    ITicketDAO iTicketDAO;
 
     @CrossOrigin(origins = {"http://localhost:8100", "file://", "*"})
     @RequestMapping(method = {RequestMethod.OPTIONS, RequestMethod.POST}, value = "saveReserva", produces = "application/json", consumes = "application/json")
@@ -201,29 +198,50 @@ public class ReservaController {
     @CrossOrigin(origins = "*", allowCredentials = "false")
     @RequestMapping(method = {RequestMethod.GET}, value = "consultar/{codReserva}")
     @ResponseBody
-    public TReserva consultarPorReserva(@PathVariable(value = "codReserva") String codReserva) {
+    public Map consultarPorReserva(@PathVariable(value = "codReserva") String codReserva) {
+        Map<String, Object> resopnse = new HashMap<>();
+        Date fecha = new Date();
+        if(codReserva.startsWith("RES-COD-")) {
+            TReserva reserva = iReservaDAO.findByCodReserva(codReserva);
+            if (reserva != null) {
+                log.info("reserva {}", reserva);
+                TPlaya playa = iPlayaDAO.findOne(reserva.getIdPlaya());
+                TTarifa tarifa = iTarifaDAO.findByPlaya(playa.getId());
+                TVehiculo vehiculo = iVehiculoDAO.findOne(reserva.getIdVehiculo());
 
-        TReserva reserva = iReservaDAO.findByCodReserva(codReserva);
+                iTicketDAO.creaTicket(vehiculo.getPlaca(),
+                                      reserva.getShaReserva(),
+                                      StrUtil.getDate(fecha, "dd/MM/yyyy HH:mm:ss"),
+                                      playa.getNombre(),
+                                      tarifa.getTarifaEstacionamiento(),
+                                      tarifa.getTarifaReserva());
 
-
-        log.info("reserva =>" + reserva);
-        if (reserva != null) {
-            if(reserva.getFechaIngreso() == null) {
-                iReservaDAO.iniciarReserva(codReserva, StrUtil.getDate(new Date(), "dd/MM/yyyy HH:mm:ss"));
-            } else {
-                iReservaDAO.finalizarReserva(codReserva, StrUtil.getDate(new Date(), "dd/MM/yyyy HH:mm:ss"));
-
+                iReservaDAO.iniciarReserva(codReserva, StrUtil.getDate(fecha, "dd/MM/yyyy HH:mm:ss"));
+                TTicket ticket = iTicketDAO.buscarTicketPorReserva(codReserva);
+                resopnse.put("ticket", ticket);
+                resopnse.put("mensaje", "Ticket Generado");
+                resopnse.put("estado", 1);
+                return resopnse;
             }
-
-            reserva.setUsuario(iUsuarioDAO.findOne(reserva.getIdUsuario()));
-            TPlaya playa = iPlayaDAO.findOne(reserva.getIdPlaya());
-            playa.setTarifa(iTarifaDAO.findByPlaya(playa.getId()));
-            reserva.setPlaya(playa);
-            reserva.setVehiculo(iVehiculoDAO.findOne(reserva.getIdVehiculo()));
-            return reserva;
+        } else if(codReserva.startsWith("TICK-")) {
+            TTicket ticket = iTicketDAO.buscarTicket(codReserva);
+            if(ticket != null && ticket.getFechaSalida() == null) {
+                iReservaDAO.finalizarReserva(ticket.getCodReserva(), StrUtil.getDate(fecha, "dd/MM/yyyy HH:mm:ss"));
+                log.info("ID: TICKET {}", ticket);
+                iTicketDAO.finalizaTicket(ticket.getId(), StrUtil.getDate(fecha, "dd/MM/yyyy HH:mm:ss"));
+                ticket = iTicketDAO.buscarTicket(codReserva);
+                resopnse.put("ticket", ticket);
+                resopnse.put("mensaje", "Ticket Finalizado Correctamente, Monto Total:" + ticket.getMontoTotal());
+                resopnse.put("estado", 2);
+                return resopnse;
+            }
+            resopnse.put("ticket", ticket);
+            resopnse.put("mensaje", "Ticket Finalizado Anteriormente");
+            resopnse.put("estado", -1);
+            return resopnse;
         }
-        return null;
 
+        return null;
     }
 
 }

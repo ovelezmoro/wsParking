@@ -43,6 +43,6 @@ public interface IReservaDAO {
 
     void iniciarReserva(String codigoReserva, String fechaIngreso);
 
-    void finalizarReserva(String codigoReserva, String fechaIngreso);
+    void finalizarReserva(String codigoReserva, String fechaSalida);
    
 }
