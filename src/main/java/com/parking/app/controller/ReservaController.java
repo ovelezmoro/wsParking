@@ -208,19 +208,28 @@ public class ReservaController {
                 TTarifa tarifa = iTarifaDAO.findByPlaya(playa.getId());
                 TVehiculo vehiculo = iVehiculoDAO.findOne(reserva.getIdVehiculo());
 
-                iTicketDAO.creaTicket(vehiculo.getPlaca(),
-                                      reserva.getShaReserva(),
-                                      StrUtil.getDate(fecha, "dd/MM/yyyy HH:mm:ss"),
-                                      playa.getNombre(),
-                                      tarifa.getTarifaEstacionamiento(),
-                                      tarifa.getTarifaReserva());
+                if(reserva.getFechaIngreso() == null) {
+                    iTicketDAO.creaTicket(vehiculo.getPlaca(),
+                            reserva.getShaReserva(),
+                            StrUtil.getDate(fecha, "dd/MM/yyyy HH:mm:ss"),
+                            playa.getNombre(),
+                            tarifa.getTarifaEstacionamiento(),
+                            tarifa.getTarifaReserva());
 
-                iReservaDAO.iniciarReserva(codReserva, StrUtil.getDate(fecha, "dd/MM/yyyy HH:mm:ss"));
-                TTicket ticket = iTicketDAO.buscarTicketPorReserva(codReserva);
-                resopnse.put("ticket", ticket);
-                resopnse.put("mensaje", "Ticket Generado");
-                resopnse.put("estado", 1);
-                return resopnse;
+                    iReservaDAO.iniciarReserva(codReserva, StrUtil.getDate(fecha, "dd/MM/yyyy HH:mm:ss"));
+
+                    TTicket ticket = iTicketDAO.buscarTicketPorReserva(codReserva);
+                    resopnse.put("ticket", ticket);
+                    resopnse.put("mensaje", "Ticket Generado");
+                    resopnse.put("estado", 1);
+
+                    return resopnse;
+                } else {
+                    resopnse.put("mensaje", "Reserva ya ingresada");
+                    resopnse.put("estado", -1);
+                    return resopnse;
+                }
+
             }
         } else if(codReserva.startsWith("TICK-")) {
             TTicket ticket = iTicketDAO.buscarTicket(codReserva);
@@ -230,7 +239,7 @@ public class ReservaController {
                 iTicketDAO.finalizaTicket(ticket.getId(), StrUtil.getDate(fecha, "dd/MM/yyyy HH:mm:ss"));
                 ticket = iTicketDAO.buscarTicket(codReserva);
                 resopnse.put("ticket", ticket);
-                resopnse.put("mensaje", "Ticket Finalizado Correctamente, Monto Total:" + ticket.getMontoTotal());
+                resopnse.put("mensaje", "Ticket Finalizado Correctamente, Monto Total: S/" + ((MathUtil.getDouble(ticket.getMontoTotal()) * 100) / 100));
                 resopnse.put("estado", 2);
                 return resopnse;
             }

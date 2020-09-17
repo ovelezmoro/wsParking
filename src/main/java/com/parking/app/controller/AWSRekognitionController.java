@@ -11,9 +11,8 @@ import com.amazonaws.services.rekognition.AmazonRekognition;
 import com.amazonaws.services.rekognition.AmazonRekognitionClientBuilder;
 import com.amazonaws.services.rekognition.model.*;
 import com.parking.app.dao.*;
-import com.parking.app.entity.TPlaya;
-import com.parking.app.entity.TReserva;
-import com.parking.app.entity.TVehiculo;
+import com.parking.app.entity.*;
+import com.parking.app.util.DateUtil;
 import com.parking.app.util.MathUtil;
 import com.parking.app.util.StrUtil;
 import io.swagger.annotations.Api;
@@ -23,7 +22,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.nio.ByteBuffer;
+import java.time.*;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -54,6 +56,9 @@ public class AWSRekognitionController {
 
     @Autowired
     ITarifaDAO iTarifaDAO;
+
+    @Autowired
+            ITicketDAO iTicketDAO;
 
     AmazonRekognition rekognitionClient = AmazonRekognitionClientBuilder
             .standard()
@@ -149,6 +154,36 @@ public class AWSRekognitionController {
             return reserva;
         }
 
+        return null;
+
+    }
+
+    @CrossOrigin(origins = {"http://localhost:8100", "file://", "*"})
+    @RequestMapping(method = {RequestMethod.OPTIONS, RequestMethod.POST}, value = "consultarConsumo", produces = "application/json", consumes = "application/json")
+    @ResponseBody
+    public TTicket consultarConsumo(@RequestBody(required = true) Map<String, String> photo) throws IOException, AmazonRekognitionException {
+        String image = photo.get("photo").replace("data:image/jpeg;base64,", "");
+        byte[] decoded = Base64.decodeBase64(image);
+        TextDetection detection = detectTextRequest(decoded);
+        log.info("DETECTION =>" + detection);
+        String placa = StrUtil.reemplazarCaracteresEspeciales(detection.getDetectedText());
+        log.info("placa =>" + placa);
+        TReserva reserva = iReservaDAO.findLastTicket(photo.get("usuario"), placa);
+        log.info("reserva =>" + reserva);
+        if (reserva != null) {
+            TTicket ticket = iTicketDAO.buscarTicketPorReserva(reserva.getShaReserva());
+            log.info("ticket =>" + ticket);
+
+
+            long horas = LocalDateTime.now().until( ticket.getFechaIngreso(), ChronoUnit.HOURS );
+
+            Double monto = MathUtil.getDouble(horas) * MathUtil.getDouble(ticket.getTarifaEstacionamiento()) + MathUtil.getDouble(ticket.getTarifaReserva());
+            log.info("hora: " + horas + "monto: " + monto);
+            BigDecimal montoTotal = BigDecimal.valueOf( Math.abs(monto * 100.0 / 100.0) );
+            ticket.setMontoTotal(montoTotal);
+
+            return ticket;
+        }
         return null;
 
     }

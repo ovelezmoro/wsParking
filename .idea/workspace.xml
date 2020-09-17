@@ -3,7 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="4aaef5c8-ac10-4f45-a726-f16bf7c85b61" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/parking/app/controller/AWSRekognitionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/parking/app/controller/AWSRekognitionController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/parking/app/controller/ReservaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/parking/app/controller/ReservaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/parking/app/entity/TTicket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/parking/app/entity/TTicket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -267,7 +270,10 @@
       <workItem from="1599840888303" duration="1019000" />
       <workItem from="1599851462227" duration="596000" />
       <workItem from="1600044433334" duration="289000" />
-      <workItem from="1600054435492" duration="14249000" />
+      <workItem from="1600054435492" duration="15636000" />
+      <workItem from="1600135942368" duration="2679000" />
+      <workItem from="1600185885014" duration="10000" />
+      <workItem from="1600305573558" duration="4697000" />
     </task>
     <servers />
   </component>
@@ -283,42 +289,50 @@
       <screen x="0" y="23" width="1280" height="725" />
     </state>
     <state x="377" y="182" key="#com.intellij.ide.util.TreeClassChooserDialog/0.23.1280.725@0.23.1280.725" timestamp="1599004890231" />
-    <state width="846" height="180" key="GridCell.Tab.0.bottom" timestamp="1600111590002">
+    <state width="1238" height="182" key="GridCell.Tab.0.bottom" timestamp="1600310806649">
       <screen x="0" y="23" width="1280" height="725" />
     </state>
-    <state width="846" height="180" key="GridCell.Tab.0.bottom/0.23.1280.725@0.23.1280.725" timestamp="1600111590002" />
-    <state width="846" height="180" key="GridCell.Tab.0.center" timestamp="1600111590002">
+    <state width="1238" height="182" key="GridCell.Tab.0.bottom/0.23.1280.725@0.23.1280.725" timestamp="1600310806649" />
+    <state width="1238" height="182" key="GridCell.Tab.0.center" timestamp="1600310806648">
       <screen x="0" y="23" width="1280" height="725" />
     </state>
-    <state width="846" height="180" key="GridCell.Tab.0.center/0.23.1280.725@0.23.1280.725" timestamp="1600111590002" />
-    <state width="846" height="180" key="GridCell.Tab.0.left" timestamp="1600111590001">
+    <state width="1238" height="182" key="GridCell.Tab.0.center/0.23.1280.725@0.23.1280.725" timestamp="1600310806648" />
+    <state width="1238" height="182" key="GridCell.Tab.0.left" timestamp="1600310806648">
       <screen x="0" y="23" width="1280" height="725" />
     </state>
-    <state width="846" height="180" key="GridCell.Tab.0.left/0.23.1280.725@0.23.1280.725" timestamp="1600111590001" />
-    <state width="846" height="180" key="GridCell.Tab.0.right" timestamp="1600111590002">
+    <state width="1238" height="182" key="GridCell.Tab.0.left/0.23.1280.725@0.23.1280.725" timestamp="1600310806648" />
+    <state width="1238" height="182" key="GridCell.Tab.0.right" timestamp="1600310806649">
       <screen x="0" y="23" width="1280" height="725" />
     </state>
-    <state width="846" height="180" key="GridCell.Tab.0.right/0.23.1280.725@0.23.1280.725" timestamp="1600111590002" />
-    <state width="1238" height="182" key="GridCell.Tab.1.bottom" timestamp="1600110844220">
+    <state width="1238" height="182" key="GridCell.Tab.0.right/0.23.1280.725@0.23.1280.725" timestamp="1600310806649" />
+    <state width="1238" height="182" key="GridCell.Tab.1.bottom" timestamp="1600310806650">
       <screen x="0" y="23" width="1280" height="725" />
     </state>
-    <state width="1238" height="182" key="GridCell.Tab.1.bottom/0.23.1280.725@0.23.1280.725" timestamp="1600110844220" />
-    <state width="1238" height="182" key="GridCell.Tab.1.center" timestamp="1600110844218">
+    <state width="1238" height="182" key="GridCell.Tab.1.bottom/0.23.1280.725@0.23.1280.725" timestamp="1600310806650" />
+    <state width="1238" height="182" key="GridCell.Tab.1.center" timestamp="1600310806650">
       <screen x="0" y="23" width="1280" height="725" />
     </state>
-    <state width="1238" height="182" key="GridCell.Tab.1.center/0.23.1280.725@0.23.1280.725" timestamp="1600110844218" />
-    <state width="1238" height="182" key="GridCell.Tab.1.left" timestamp="1600110844217">
+    <state width="1238" height="182" key="GridCell.Tab.1.center/0.23.1280.725@0.23.1280.725" timestamp="1600310806650" />
+    <state width="1238" height="182" key="GridCell.Tab.1.left" timestamp="1600310806649">
       <screen x="0" y="23" width="1280" height="725" />
     </state>
-    <state width="1238" height="182" key="GridCell.Tab.1.left/0.23.1280.725@0.23.1280.725" timestamp="1600110844217" />
-    <state width="1238" height="182" key="GridCell.Tab.1.right" timestamp="1600110844219">
+    <state width="1238" height="182" key="GridCell.Tab.1.left/0.23.1280.725@0.23.1280.725" timestamp="1600310806649" />
+    <state width="1238" height="182" key="GridCell.Tab.1.right" timestamp="1600310806650">
       <screen x="0" y="23" width="1280" height="725" />
     </state>
-    <state width="1238" height="182" key="GridCell.Tab.1.right/0.23.1280.725@0.23.1280.725" timestamp="1600110844219" />
+    <state width="1238" height="182" key="GridCell.Tab.1.right/0.23.1280.725@0.23.1280.725" timestamp="1600310806650" />
     <state x="445" y="275" width="390" height="258" key="com.intellij.database.actions.DdlActions$CommentOnObjectAction$1" timestamp="1600108451881">
       <screen x="0" y="23" width="1280" height="725" />
     </state>
     <state x="445" y="275" width="390" height="258" key="com.intellij.database.actions.DdlActions$CommentOnObjectAction$1/0.23.1280.725@0.23.1280.725" timestamp="1600108451881" />
+    <state x="485" y="166" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1600112425334">
+      <screen x="0" y="23" width="1280" height="725" />
+    </state>
+    <state x="485" y="166" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.23.1280.725@0.23.1280.725" timestamp="1600112425334" />
+    <state x="341" y="140" width="598" height="490" key="find.popup" timestamp="1600141744064">
+      <screen x="0" y="23" width="1280" height="725" />
+    </state>
+    <state x="341" y="140" width="598" height="490" key="find.popup/0.23.1280.725@0.23.1280.725" timestamp="1600141744064" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
